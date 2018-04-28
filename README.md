@@ -3,7 +3,7 @@ pentest-tools
 
 Script to install security tools, and other required tools
 
-Supports Fedora 27 & Ubuntu 17.10, for older releases, please try, but it might not be supported.
+Supports Fedora 27 & Ubuntu 18.04, for older releases, please try, but it might not be supported.
 
 Use the install-pentest-tools.sh.
 
