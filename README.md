@@ -1,6 +1,8 @@
 pentest-tools
 ====================
 
+Forked from madmantm. He/She has put a great amount of work into this but I don't need it all 
+
 Script to install security tools, and other required tools
 
 Supports Fedora 27 & Ubuntu 18.04, for older releases, please try, but it might not be supported.
@@ -18,7 +20,7 @@ The tools are now installed in /opt
 
 Thanks to everyone that helps make this script better.
 
-Note : Thanks for the people who reports issues with files or missing programs in folders, it's really appreciated. Also, for the people who forks the script, please note that it changes quite frequently, so you should always keep the original :) 
+Note : Thanks for the people who reports issues with files or missing programs in folders, it's really appreciated. Also, for the people who forks the script, please note that it changes quite frequently, so you should always keep the original :)
 
 Requirements
 ====================
