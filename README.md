@@ -12,7 +12,7 @@ chmod +x install-pentest-tools.sh
 ./install-pentest-tools.sh.
 
 ```
-Tools are now installed in /opt
+Tools are installed in /opt in a folder of your choosing
 
 *Any suggestions to add more tools, or else, please don't hesitate to contact madmantm as this is his/her work.*
 *Will be maintained to the best of my ability.*
@@ -20,4 +20,5 @@ Tools are now installed in /opt
 
 Requirements
 ====================
-About 20-30gb of disk space, and the respective Ubuntu latest LTS or latest Kali/Parrot release.
+About 20-30gb of disk space, and the respective Ubuntu latest LTS or latest Kali release.
+Kali and Parrot installs can be much smaller because most tools contained here are already installed
