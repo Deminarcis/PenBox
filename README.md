@@ -21,4 +21,4 @@ Tools are installed in /opt in a folder of your choosing
 Requirements
 ====================
 About 20-30gb of disk space, and the respective Ubuntu latest LTS or latest Kali release.
-Kali and Parrot installs can be much smaller because most tools contained here are already installed
+Kali installs can be much smaller because most tools contained here are already installed
