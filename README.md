@@ -16,7 +16,7 @@ Tools are now installed in /opt
 
 *Any suggestions to add more tools, or else, please don't hesitate to contact madmantm as this is his/her work.*
 *Will be maintained to the best of my ability.*
-*This repo purely serves as a way for me to track and make the changes for this script to work for me*
+*This repo purely serves as a way for me to track and make the changes for this script to work for me and my use case*
 
 Requirements
 ====================
