@@ -1,27 +1,22 @@
 pentest-tools
 ====================
 
-Forked from madmantm. He/She has put a great amount of work into this but I don't need it all 
+Forked from madmantm.
 
-Script to install security tools, and other required tools
+Script to install security tools, and other required tools for penetration testing and network auditing on your system without the need to fidget with a VM and pass off USB or PCI devices
 
-Supports Fedora 27 & Ubuntu 18.04, for older releases, please try, but it might not be supported.
+To install extract anywhere and use:
+```
+chmod +x install-pentest-tools.sh
 
-Use the install-pentest-tools.sh.
+./install-pentest-tools.sh.
 
-The tools are now installed in /opt
+```
+Tools are now installed in /opt
 
-*Any suggestions to add more tools, or else, please don't hesitate to contact me.*
+*Any suggestions to add more tools, or else, please don't hesitate to contact madmantm as this is his/her work.*
 *Will be maintained to the best of my ability.*
-
-**How to use this script:**
-
-- chmod +x install-pentest-tools.sh then sudo ./install-pentest-tools.sh
-
-Thanks to everyone that helps make this script better.
-
-Note : Thanks for the people who reports issues with files or missing programs in folders, it's really appreciated. Also, for the people who forks the script, please note that it changes quite frequently, so you should always keep the original :)
 
 Requirements
 ====================
-About 20-30gb of disk space, and the respective ubuntu or fedora distro.
+About 20-30gb of disk space, and the respective Ubuntu latest LTS or latest Kali/Parrot release.
