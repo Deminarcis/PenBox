@@ -438,11 +438,6 @@ firefox_esr_enGB-v60(){
     mv -f firefox firefox-esr 
 }
 
-install_empire(){
-    cd /opt/$mydirectory
-    git clone https://github.com/EmpireProject/Empire.git
-    echo -e " \e[31m Empire is not completely installed. run 'install.sh' from the setup folder as root to complete setup \e[0m "
-}
 
 windows_tools_offline(){
     echo -e " \e[31m -> \e[0m \e[32m [*]windows tools just in case no internets / also might be flagged by pesky webfiltering systems \e[0m"
