@@ -8,10 +8,10 @@ fi
 runFolder="$PWD"
 #Trying to get user's default shell -- we need to know for later
 dshell="$SHELL"
-mydirectory="/opt/pentools-slim"
+mydirectory="/opt/pentools"
 
 #get to know where we are doing this on the system and as whom
-echo -e "This script is a slimmed down version of pentools, it installs specific tools and is aimed at people wanting a few frameworks/tools that are not included in a regular Kali install. \n \n  we aim to provide the following: \n - Routersploit \n - Airgeddon \n - MITMF \n "
+echo -e "This script is a slimmed down version of pentools, it installs specific tools and is aimed at people wanting a few frameworks/tools that are not included in a regular Kali install. \n \n  This script aims to provide the following: \n - Routersploit \n - Airgeddon \n - MITMF \n "
 echo -e "\e[31m This script is aimed at embedded devices (i.e a raspberry pi) \e[0m "
 read -p "[*]Please enter your username, this will help me fix permissions (use 'id' if unsure) : " myname
 clear

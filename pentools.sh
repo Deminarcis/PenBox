@@ -5,7 +5,7 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 # Bookmarking where the script was run from
-installfolder="$PWD"
+runFolder="$PWD"
 #Trying to get user's default shell -- we need to know for later
 dshell="$SHELL"
 
@@ -22,7 +22,7 @@ echo -e "your default shell is \e[33m $dshell \e[0m "
 if cat /etc/lsb-release | grep '18.*'
 then
     echo "You are running Ubuntu"
-    dpkg --add-architecture i386  
+    dpkg --add-architecture i386
     apt-get update -y
     apt-get dist-upgrade -y
     export DEBIAN_FRONTEND=noninteractive
@@ -435,7 +435,7 @@ firefox_esr_enGB-v60(){
     cd /opt/$mydirectory
     curl -O 'https://download-installer.cdn.mozilla.net/pub/firefox/releases/60.0.1esr/linux-x86_64/en-GB/firefox-60.0.1esr.tar.bz2'
     tar -xvf firefox-60.0.1esr.tar.bz2 firefox
-    mv -f firefox firefox-esr 
+    mv -f firefox firefox-esr
 }
 
 
