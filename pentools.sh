@@ -404,6 +404,9 @@ hash_identifiers(){
     mkdir /opt/$mydirectory/crypto
     cd /opt/$mydirectory/crypto
     git clone https://github.com/SmeegeSec/HashTag.git
+    cd HashTag
+    chmod +x Hashtag.py
+    cd ..
     git clone https://github.com/psypanda/hashID.git
     cd /opt/$mydirectory
 }
