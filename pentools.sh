@@ -71,14 +71,14 @@ create_directories(){
 }
 
 install_metasploit(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]gather the metasploit repository \e[0m"
+    echo -e "\e[31m -> \e[0m \e[32m [*] Gathering the metasploit repository \e[0m"
     curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
     chmod 755 msfinstall && \
     ./msfinstall
 }
 
 install_routersploit(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]Installing Routersploit \e[0m"
+    echo -e "\e[31m -> \e[0m \e[32m [*] Installing Routersploit \e[0m"
     cd /opt/$mydirectory/
     sudo apt-get install git python3-pip libglib2.0-dev
     git clone https://www.github.com/threat9/routersploit
@@ -88,7 +88,7 @@ install_routersploit(){
 }
 
 misc_tools(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]other exploit tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing other miscellaneous exploit tools \e[0m"
     cd /opt/$mydirectory/exploits
     git clone https://github.com/longld/peda.git
     git clone https://github.com/govolution/avet
@@ -102,7 +102,7 @@ misc_tools(){
 }
 
 wordlists(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]wordlists gathering \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Gathering wordlists \e[0m"
     cd /opt/$mydirectory/wordlists
     git clone https://github.com/danielmiessler/SecLists.git
     wget -nc http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2
@@ -113,7 +113,7 @@ wordlists(){
 }
 
 install_burp(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]install burpfree \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing Burpsuite \e[0m"
     cd /opt/$mydirectory/webapps
     mkdir /opt/$mydirectory/webapps/burp_proxy
     cd /opt/$mydirectory/webapps/burp_proxy
@@ -122,7 +122,7 @@ install_burp(){
 }
 
 misc_scripts(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]misc scripts \e[0m"
+    echo -e "\e[31m -> \e[0m \e[32m [*] Gathering some extra scripts \e[0m"
     cd /opt/$mydirectory
     mkdir /opt/$mydirectory/misc
     cd /opt/$mydirectory/misc
@@ -131,7 +131,7 @@ misc_scripts(){
 }
 
 install_tor(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]install torbrowser \e[0m"
+    echo -e "\e[31m -> \e[0m \e[32m [*] Install Tor \e[0m"
     mkdir /opt/$mydirectory/network/torbrowser
     cd /opt/$mydirectory/network/torbrowser
     wget -nc https://github.com/TheTorProject/gettorbrowser/releases/download/v7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
@@ -141,7 +141,7 @@ install_tor(){
 }
 
 php_reverse(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]gathering php reverse shell \e[0m"
+    echo -e "\e[31m -> \e[0m \e[32m [*] Gathering PHP reverse shell tools \e[0m"
     mkdir /opt/$mydirectory/network/reverse_shells
     cd /opt/$mydirectory/network/reverse_shells
     wget -nc http://pentestmonkey.net/tools/php-reverse-shell/php-reverse-shell-1.0.tar.gz
@@ -150,7 +150,7 @@ php_reverse(){
 }
 
 privesc_tools(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]install privesc tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing privesc tools \e[0m"
     cd /opt/$mydirectory/escalation
     git clone https://github.com/mattifestation/PowerSploit.git
     git clone https://github.com/putterpanda/mimikittenz.git
@@ -162,7 +162,7 @@ privesc_tools(){
 }
 
 post-exploit(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]install post-exploitation tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing post-exploitation tools \e[0m"
     cd /opt/$mydirectory/postexploitation
     git clone https://github.com/AlessandroZ/LaZagne.git
     git clone https://github.com/CoreSecurity/impacket.git
@@ -172,7 +172,7 @@ post-exploit(){
 }
 
 install_volatility(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]install volatility framework \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Install the volatility framework \e[0m"
     mkdir /opt/$mydirectory/forensics
     cd /opt/$mydirectory/forensics
     git clone https://github.com/volatilityfoundation/volatility.git
@@ -180,7 +180,7 @@ install_volatility(){
 }
 
 recon_tools(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing other reconnaissance tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing other recon tools \e[0m"
     cd /opt/$mydirectory/recon
     git clone https://github.com/guelfoweb/knock.git
     git clone https://github.com/laramies/theHarvester.git
@@ -209,7 +209,7 @@ recon_tools(){
 }
 
 install_pwcrackers(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]install pwcracking tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing password cracking tools \e[0m"
     cd /opt/$mydirectory/pwcracking/
     git clone https://github.com/lanjelot/patator.git
     git clone https://github.com/mikesiegel/ews-crack
@@ -230,7 +230,7 @@ install_pwcrackers(){
 }
 
 webapp_tools(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]install arachni and other webapp tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing arachni and other webapp tools \e[0m"
     cd /opt/$mydirectory/webapps
     wget http://testssl.sh/testssl.sh
     mkdir /opt/$mydirectory/webapps/arachni
@@ -287,7 +287,7 @@ webapp_tools(){
 }
 
 install_mitm(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing tools for mitm/network/scada \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for mitm/network/scada \e[0m"
     cd /opt/$mydirectory/network/
     wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.nse -O /usr/share/nmap/scripts/vulners.nse
     git clone https://github.com/scadastrangelove/SCADAPASS.git
@@ -330,7 +330,7 @@ install_mitm(){
 }
 
 install_social_engineering(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing tools for social engineering \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for social engineering \e[0m"
     cd /opt/$mydirectory/social_engineering
     git clone https://github.com/trustedsec/social-engineer-toolkit.git
     git clone https://github.com/philwantsfish/shard
@@ -342,7 +342,7 @@ install_social_engineering(){
 }
 
 reverse_engineering(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing tools for reverse engineering \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for reverse engineering \e[0m"
     cd /opt/$mydirectory/reverse/
     git clone https://github.com/Gallopsled/pwntools.git
     git clone https://github.com/hasherezade/shellconv.git
@@ -353,7 +353,7 @@ reverse_engineering(){
 }
 
 exploits(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing exploit related tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing exploit related tools \e[0m"
     cd /opt/$mydirectory/exploits
     git clone https://github.com/offensive-security/exploit-database
     git clone https://github.com/toolswatch/vFeed.git
@@ -366,7 +366,7 @@ exploits(){
 }
 
 privacy_escalation(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing tools for priv escalation \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for privelege escalation \e[0m"
     cd /opt/$mydirectory/escalation
     git clone https://github.com/samratashok/nishang.git
     git clone https://github.com/rebootuser/LinEnum.git
@@ -380,14 +380,14 @@ privacy_escalation(){
 }
 
 veil_framework(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing the veil framework \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing the veil framework \e[0m"
     cd /opt/$mydirectory/exploits
     git clone https://github.com/Veil-Framework/Veil-Evasion.git
     git clone https://github.com/Veil-Framework/Veil-PowerView.git
 }
 
 tool_cheatsheets(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]gathering cheatsheets \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Gathering cheatsheets \e[0m"
     cd /opt/$mydirectory/cheatsheets
     git clone https://github.com/HarmJ0y/CheatSheets
     git clone https://github.com/aramosf/sqlmap-cheatsheet.git
@@ -400,7 +400,7 @@ tool_cheatsheets(){
 }
 
 hash_identifiers(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing tools to identify hashes \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools to identify hashes \e[0m"
     mkdir /opt/$mydirectory/crypto
     cd /opt/$mydirectory/crypto
     git clone https://github.com/SmeegeSec/HashTag.git
@@ -412,7 +412,7 @@ hash_identifiers(){
 }
 
 wireless_tools(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]installing wireless et wps tools \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing wireless et wps tools \e[0m"
     cd /opt/$mydirectory/wireless
     git clone https://github.com/DanMcInerney/wifijammer.git
     git clone https://github.com/derv82/wifite.git
@@ -426,14 +426,14 @@ wireless_tools(){
 }
 
 wpscan(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]requirements for wpscan \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing requirements for wpscan \e[0m"
     cd /opt/$mydirectory/webapps/wpscan
     bundle install
     cd /opt/$mydirectory
 }
 
 firefox_esr_enGB-v60(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]swapping currently Firefox for Firefox ESR \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing Firefox ESR (This will remove regular Firefox) \e[0m"
     apt-get remove firefox
     cd /opt/$mydirectory
     curl -O 'https://download-installer.cdn.mozilla.net/pub/firefox/releases/60.0.1esr/linux-x86_64/en-GB/firefox-60.0.1esr.tar.bz2'
@@ -443,7 +443,7 @@ firefox_esr_enGB-v60(){
 
 
 windows_tools_offline(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]windows tools just in case no internets / also might be flagged by pesky webfiltering systems \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing Windows tools just in case no internets / also might be flagged by pesky webfiltering systems \e[0m"
     mkdir /opt/$mydirectory/windows/win_tools
     cd /opt/$mydirectory/windows/win_tools
     wget -nc "http://www.oxid.it/downloads/ca_setup.exe"
@@ -458,7 +458,7 @@ windows_tools_offline(){
 }
 
 linux_tools_offline(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]linux tools just in case no internets \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing linux tools just in case no internets \e[0m"
     mkdir /opt/$mydirectory/linux/lin_tools
     cd /opt/$mydirectory/linux/lin_tools
     wget -nc "http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run"
@@ -466,7 +466,7 @@ linux_tools_offline(){
 }
 
 fix_perms(){
-    echo -e " \e[31m -> \e[0m \e[32m [*]correcting user-rights \e[0m"
+    echo -e " \e[31m -> \e[0m \e[32m [*] Correcting permissions \e[0m"
     chown -R $myname:$myname /opt/$mydirectory
 }
 
