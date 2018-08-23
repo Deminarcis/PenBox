@@ -6,17 +6,22 @@ if [[ $EUID -ne 0 ]]; then
 fi
 # Bookmarking where the script was run from
 runFolder="$PWD"
-#Trying to get user's default shell -- we need to know for later
-dshell="$SHELL"
 
 #get to know where we are doing this on the system and as whom
-read -p "[*]Please enter your username, this will help me fix permissions (use 'id' if unsure) : " myname
-echo "[*]what would be your prefered directory name for the tools? the tools will be installed in /opt/nameyouchose "
+read -p "[*]Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure): " myname
+echo "[*]Where can we install this stuff? Tools will be installed in /opt/whatevernameyouchoose "
 read -p "[*]Please enter the directory name you would like: " mydirectory
-clear
 
+if [[ -f updater.sh ]]; then
+    read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
+fi
+
+if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]; then
+    updater
+fi
+
+clear
 echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
-echo -e "your default shell is \e[33m $dshell \e[0m "
 
 ## Ubuntu Install 18+ setup
 if cat /etc/lsb-release | grep '18.*'
@@ -471,6 +476,20 @@ fix_perms(){
 create_symlink(){
     cd $HOME
     ln -s /opt/$mydirectory ./
+}
+
+create_updater(){
+    echo -e '#!/usr/bin/env bash' > updater.sh
+    echo -e "mydirectory = $mydirectory" >> updater.sh
+    echo 'for dir in $(find /opt/$mydirectory -type d -name .git); do' >> updater.sh
+    echo 'cd "$dir" && git pull' >> updater.sh
+    echo 'done' >> updater.sh
+}
+
+updater(){
+    if [[ -f /opt/$mydirectory ]]; then
+        bash ./updater.sh
+    fi
 }
 
 #Execute tailored installs based on distro detected
