@@ -12,7 +12,7 @@ read -p "[*]Please enter your username, this will help me fix permissions later 
 echo "[*]Where can we install this stuff? Tools will be installed in /opt/whatevernameyouchoose "
 read -p "[*]Please enter the directory name you would like: " mydirectory
 
-if [[ -f updater.sh ]]; then
+if [[ -f /opt/$mydirectory/updater.sh ]]; then
     read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
 fi
 
@@ -479,10 +479,12 @@ create_symlink(){
 }
 
 create_updater(){
+    cd /opt/$mydirectory
+    touch updater.sh
     echo -e '#!/usr/bin/env bash' > updater.sh
     echo -e "mydirectory = $mydirectory" >> updater.sh
     echo 'for dir in $(find /opt/$mydirectory -type d -name .git); do' >> updater.sh
-    echo 'cd "$dir" && git pull' >> updater.sh
+    echo '  cd "$dir" && git pull' >> updater.sh
     echo 'done' >> updater.sh
 }
 
@@ -524,6 +526,7 @@ then
     linux_tools_offline
     fix_perms
     create_symlink
+    create_updater
 fi
 
 if [[ "$Kali" == "y" ]]
