@@ -7,44 +7,23 @@ fi
 # Bookmarking where the script was run from
 runFolder="$PWD"
 
-#get to know where we are doing this on the system and as whom
-read -p "[*]Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure): " myname
-echo "[*]Where can we install this stuff? Tools will be installed in /opt/whatevernameyouchoose "
-read -p "[*]Please enter the directory name you would like: " mydirectory
-
-if [[ -f /opt/$mydirectory/updater.sh ]]; then
-    read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
-fi
-
-if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]; then
-    run_updater
-fi
-
-clear
-echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
-
-## Ubuntu Install 18+ setup
-if cat /etc/lsb-release | grep '18.*'
-then
-    echo "You are running Ubuntu"
+#Groups to install
+ubuntu_preinstall(){
+    echo "You are running Ubuntu, Installing some components before we begin. "
     dpkg --add-architecture i386
     apt-get update -y
     apt-get dist-upgrade -y
     export DEBIAN_FRONTEND=noninteractive
     apt-get install -yq curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn-gnome libwebkitgtk-1.0-0 libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8-dev libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng tlp powertop openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad remmina remmina-common remmina-plugin-* libxfreerdp-client1.1 qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev libssl-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev  libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.0.0 libncurses5-dev libncurses5 sni-qt sni-qt:i386
-    Ubuntu="y"
-fi
-#Setup and dependencies for a Kali install
-if cat /etc/lsb-release | grep 'Kali'
-then
+}
+
+
+kali_preinstall(){
     echo "You are running Kali, Kali support is not complete please open an issue if it does not work as expected"
     dpkg --add-architecture i386
     apt-get install ruby ruby-dev ruby-bundler libpcap-dev python-pypcap python3-pip
     apt-get install -yq curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn-gnome libwebkitgtk-1.0-0 libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8-dev libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng tlp powertop openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad remmina remmina-common remmina-plugin-* libxfreerdp-client1.1 qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev libssl-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev  libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.0.0 libncurses5-dev libncurses5 sni-qt sni-qt:i386
-    Kali="y"
-fi
-
-#Groups to install
+}
 
 install_gems(){
     gem install snmp
@@ -496,10 +475,38 @@ run_updater(){
     fi
 }
 
+#get to know where we are doing this on the system and as whom
+read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure): " myname
+echo "[*] We will install this in /opt, what should we call the folder? "
+read -p "[*] Please enter the directory name you would like: " mydirectory
+
+if [[ -f /opt/$mydirectory/updater.sh ]]; then
+    read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
+fi
+
+if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]; then
+    run_updater
+fi
+
+clear
+echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
+
+## Ubuntu Install 18+ setup
+if cat /etc/lsb-release | grep '18.*'
+then
+    Ubuntu="y"
+fi
+#Setup and dependencies for a Kali install
+if cat /etc/lsb-release | grep 'Kali'
+then
+    Kali="y"
+fi
+
 #Execute tailored installs based on distro detected
 
 if [[ "$Ubuntu" == "y" ]]
 then
+    ubuntu_preinstall
     install_gems
     create_directories
     install_metasploit
@@ -533,6 +540,7 @@ fi
 
 if [[ "$Kali" == "y" ]]
 then
+    kali_preinstall
     install_gems
     create_directories
     exploits
