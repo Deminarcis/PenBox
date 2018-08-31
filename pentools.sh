@@ -17,7 +17,7 @@ if [[ -f /opt/$mydirectory/updater.sh ]]; then
 fi
 
 if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]; then
-    updater
+    run_updater
 fi
 
 clear
@@ -489,7 +489,7 @@ create_updater(){
     echo 'done' >> updater.sh
 }
 
-updater(){
+run_updater(){
     if [[ -f /opt/$mydirectory/updater.sh ]]; then
         source ./updater.sh
         exit
