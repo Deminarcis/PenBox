@@ -490,8 +490,9 @@ create_updater(){
 }
 
 updater(){
-    if [[ -f /opt/$mydirectory ]]; then
-        bash ./updater.sh
+    if [[ -f /opt/$mydirectory/updater.sh ]]; then
+        source ./updater.sh
+        exit
     fi
 }
 
