@@ -118,8 +118,8 @@ install_tor(){
     mkdir /opt/$mydirectory/network/torbrowser
     cd /opt/$mydirectory/network/torbrowser
     wget -nc https://www.torproject.org/dist/torbrowser/8.0/tor-browser-linux64-8.0_en-US.tar.xz
-    tar -xf tor-browser-linux64-7.5.3_en-US.tar.xz
-    rm -rf tor-browser-linux64-7.5.3_en-US.tar.xz
+    tar -xf tor-browser-linux64-8.0_en-US.tar.xz
+    rm -rf tor-browser-linux64-8.0_en-US.tar.xz
     cd /opt/$mydirectory
 }
 
