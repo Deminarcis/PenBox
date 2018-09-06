@@ -117,7 +117,7 @@ install_tor(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Install Tor \e[0m"
     mkdir /opt/$mydirectory/network/torbrowser
     cd /opt/$mydirectory/network/torbrowser
-    wget -nc https://github.com/TheTorProject/gettorbrowser/releases/download/v7.5.3/tor-browser-linux64-7.5.3_en-US.tar.xz
+    wget -nc https://www.torproject.org/dist/torbrowser/8.0/tor-browser-linux64-8.0_en-US.tar.xz
     tar -xf tor-browser-linux64-7.5.3_en-US.tar.xz
     rm -rf tor-browser-linux64-7.5.3_en-US.tar.xz
     cd /opt/$mydirectory
