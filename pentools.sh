@@ -463,6 +463,7 @@ create_updater(){
     touch updater.sh
     echo -e '#!/usr/bin/env bash' > updater.sh
     echo -e "mydirectory = $mydirectory" >> updater.sh
+    echo -e "echo 'I have not figured out how to automatically update Tor. You will need to maintain this yourself'" >> updater.sh
     echo 'for dir in $(find /opt/$mydirectory -type d -name .git); do' >> updater.sh
     echo '  cd "$dir" && git pull' >> updater.sh
     echo 'done' >> updater.sh
