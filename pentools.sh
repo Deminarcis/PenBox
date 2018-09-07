@@ -458,22 +458,12 @@ create_symlink(){
     ln -s /opt/$mydirectory ./
 }
 
-create_updater(){
-    cd /opt/$mydirectory
-    touch updater.sh
-    echo -e '#!/usr/bin/env bash' > updater.sh
-    echo -e "mydirectory = $mydirectory" >> updater.sh
-    echo -e "echo 'I have not figured out how to automatically update Tor. You will need to maintain this yourself'" >> updater.sh
-    echo 'for dir in $(find /opt/$mydirectory -type d -name .git); do' >> updater.sh
-    echo '  cd "$dir" && git pull' >> updater.sh
-    echo 'done' >> updater.sh
-}
-
 run_updater(){
-    if [[ -f /opt/$mydirectory/updater.sh ]]; then
-        source ./updater.sh
-        exit
-    fi
+    cd /opt/$mydirectory
+    echo 'I have not figured out how to automatically update Tor. You will need to maintain this yourself'
+    for dir in $(find /opt/$mydirectory -type d -name .git); do
+        cd "$dir" && git pull
+    done
 }
 
 #get to know where we are doing this on the system and as whom
@@ -485,7 +475,8 @@ if [[ -f /opt/$mydirectory/updater.sh ]]; then
     read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
 fi
 
-if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]; then
+if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]
+then
     run_updater
 fi
 
