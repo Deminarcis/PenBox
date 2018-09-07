@@ -483,6 +483,7 @@ echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will
 if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]
 then
     run_updater
+    exit
 fi
 
 ## Ubuntu Install 18+ setup
