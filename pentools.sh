@@ -472,17 +472,18 @@ read -p "[*] Please enter your username, this will help me fix permissions later
 echo "[*] We will install this in /opt, what should we call the folder? "
 read -p "[*] Please enter the directory name you would like: " mydirectory
 
-if [[ -f /opt/$mydirectory/updater.sh ]]; then
-    read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
+if [[ -d /opt/$mydirectory/ ]]; then
+    read -p "This script has been run before and has made an updater script. Do you want to run the updater? " update
 fi
 
 clear
 echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
 
 
-if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]
+if [[ "$update" == "y" ]]
 then
     run_updater
+    exit
 fi
 
 ## Ubuntu Install 18+ setup
