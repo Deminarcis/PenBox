@@ -464,6 +464,7 @@ run_updater(){
     for dir in $(find /opt/$mydirectory -type d -name .git); do
         cd "$dir" && git pull
     done
+    exit
 }
 
 #get to know where we are doing this on the system and as whom
