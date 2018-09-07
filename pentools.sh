@@ -527,7 +527,6 @@ then
     linux_tools_offline
     fix_perms
     create_symlink
-    create_updater
 fi
 
 if [[ "$Kali" == "y" ]]
