@@ -475,13 +475,14 @@ if [[ -f /opt/$mydirectory/updater.sh ]]; then
     read -p "This script has been run before and has made an updater script. Do you want to run the updater? " just_update
 fi
 
+clear
+echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
+
+
 if [[ "$just_update" == "y" ]] | [[ "$just_update" == "Y" ]]
 then
     run_updater
 fi
-
-clear
-echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
 
 ## Ubuntu Install 18+ setup
 if cat /etc/lsb-release | grep '18.*'
