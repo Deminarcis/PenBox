@@ -461,10 +461,7 @@ create_symlink(){
 run_updater(){
     cd /opt/$mydirectory
     echo 'I have not figured out how to automatically update Tor. You will need to maintain this yourself'
-    for dir in $(find /opt/$mydirectory -type d -name .git); do
-        cd "$dir" && git pull
-    done
-    exit
+    find /opt/$mydirectory -type d -name .git -exec git --git-dir={} --work-tree=$PWD/{}/.. pull \;
 }
 
 #get to know where we are doing this on the system and as whom
