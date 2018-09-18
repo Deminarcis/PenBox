@@ -408,15 +408,6 @@ wpscan(){
     cd /opt/$mydirectory
 }
 
-firefox_esr_enGB-v60(){
-    echo -e " \e[31m -> \e[0m \e[32m [*] Installing Firefox ESR (This will remove regular Firefox) \e[0m"
-    apt-get remove firefox
-    cd /opt/$mydirectory
-    curl -O 'https://download-installer.cdn.mozilla.net/pub/firefox/releases/60.0.1esr/linux-x86_64/en-GB/firefox-60.0.1esr.tar.bz2'
-    tar -xvf firefox-60.0.1esr.tar.bz2 firefox
-    mv -f firefox firefox-esr
-}
-
 
 windows_tools_offline(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing Windows tools just in case no internets / also might be flagged by pesky webfiltering systems \e[0m"
