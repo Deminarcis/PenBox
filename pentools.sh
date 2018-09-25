@@ -453,6 +453,15 @@ wireshark_from_ppa(){
     apt install wireshark
 }
 
+anonsurf(){
+    cd /opt/$mydirectory
+    mkdir -p "Anonimity Tools"
+    cd "Anonimity Tools"
+    git clone https://github.com/Und3rf10w/kali-anonsurf.git
+    cd kali-anonsurf
+    ./installer.sh
+}
+
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure): " myname
 echo "[*] We will install this in /opt, what should we call the folder? "
@@ -514,6 +523,7 @@ then
     wireless_tools
     wpscan
     linux_tools_offline
+    anonsurf
     fix_perms
     create_symlink
 fi
@@ -536,6 +546,7 @@ then
     privesc_tools
     misc_scripts
     wordlists
+    anonsurf
     linux_tools_offline
     fix_perms
     create_symlink
