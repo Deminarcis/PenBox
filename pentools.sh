@@ -313,7 +313,7 @@ install_social_engineering(){
     git clone https://github.com/mwrlabs/XRulez.git
     git clone https://github.com/dafthack/MailSniper.git
     git clone https://github.com/ustayready/CredSniper
-    wget -nc https://github.com/gophish/gophish/releases/download/v0.5.0/gophish-v0.5.0-linux-64bit.zip
+    wget -nc https://github.com/gophish/gophish/releases/download/v0.7.1/gophish-v0.7.1-linux-64bit.zip
     cd /opt/$mydirectory
 }
 
