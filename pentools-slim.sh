@@ -21,7 +21,7 @@ echo -e "your default shell is \e[33m $dshell \e[0m "
 pre_install_setup(){
     apt-get update -y
     apt-get dist-upgrade -y
-    apt-get instal masscan nmap openvpn
+    apt-get install masscan nmap openvpn
 }
 
 install_routersploit(){
@@ -49,10 +49,80 @@ install_MITMF(){
     pip install mysql-python
 }
 
-install_wifite(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]Installing Wifite \e[0m"
-    cd $mydirectory/
+wireless_tools(){
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing wireless et wps tools \e[0m"
+    cd /opt/$mydirectory/wireless
+    git clone https://github.com/DanMcInerney/wifijammer.git
     git clone https://github.com/derv82/wifite.git
+    git clone https://github.com/OpenSecurityResearch/hostapd-wpe.git
+    git clone https://github.com/sophron/wifiphisher.git
+    git clone https://github.com/s0lst1c3/eaphammer.git
+    git clone https://github.com/Tylous/SniffAir.git
+    git clone https://github.com/tehw0lf/airbash.git
+    git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
+    cd /opt/$mydirectory
+}
+
+hash_identifiers(){
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools to identify hashes \e[0m"
+    mkdir /opt/$mydirectory/crypto
+    cd /opt/$mydirectory/crypto
+    git clone https://github.com/SmeegeSec/HashTag.git
+    cd HashTag
+    chmod +x Hashtag.py
+    cd ..
+    git clone https://github.com/psypanda/hashID.git
+    cd /opt/$mydirectory
+}
+
+install_mitm(){
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for mitm/network/scada \e[0m"
+    cd /opt/$mydirectory/network/
+    wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.nse -O /usr/share/nmap/scripts/vulners.nse
+    git clone https://github.com/scadastrangelove/SCADAPASS.git
+    git clone https://github.com/SySS-Research/Seth
+    git clone https://github.com/DanMcInerney/icebreaker.git
+    git clone https://github.com/byt3bl33d3r/DeathStar.git
+    git clone https://github.com/DanMcInerney/creds.py.git
+    git clone https://github.com/inquisb/keimpx
+    git clone https://github.com/mlazarov/ddos-stress.git
+    git clone https://github.com/sensepost/DET.git
+    git clone https://github.com/DanMcInerney/LANs.py.git
+    git clone https://github.com/lgandx/Responder
+    git clone https://github.com/tintinweb/striptls
+    git clone https://github.com/arthepsy/ssh-audit.git
+    git clone https://github.com/DanMcInerney/net-creds.git
+    git clone https://github.com/covertcodes/multitun.git
+    git clone https://github.com/byt3bl33d3r/MITMf.git
+    git clone https://github.com/byt3bl33d3r/CrackMapExec.git
+    git clone https://github.com/nccgroup/redsnarf
+    git clone https://github.com/m57/ARDT.git
+    git clone https://github.com/vanhauser-thc/thc-ipv6.git
+    git clone https://github.com/nccgroup/vlan-hopping.git
+    git clone https://github.com/Hood3dRob1n/Reverser.git
+    git clone https://github.com/SpiderLabs/ikeforce.git
+    go get github.com/bettercap/bettercap
+    mv /home/$myname/go /opt/$mydirectory/network/bettercap
+    git clone https://github.com/robertdavidgraham/masscan.git
+    cd /opt/$mydirectory/network/masscan/bin
+    make
+    cd /opt/$mydirectory/network/MITMf
+    pip install BeautifulSoup4
+    pip install -r requirements.txt
+    pip install mysql-python
+    cd /opt/$mydirectory/network/MITMf/libs/bdfactory/
+    git clone https://github.com/secretsquirrel/the-backdoor-factory.git .
+    cd /opt/$mydirectory/network/CrackMapExec
+    pip install -r requirements.txt
+    python setup.py install
+    cd /opt/$mydirectory/network
+    git clone https://github.com/P0cL4bs/WiFi-Pumpkin.git
+    pip install service_identity
+    pip install scapy_http
+    cd WiFi-Pumpkin
+    chmod +x installer.sh
+    ./installer.sh --install
+    cd /opt/$mydirectory
 }
 
 fix_perms(){
@@ -66,10 +136,24 @@ create_symlink(){
     ln -s $mydirectory ./
 }
 
+post-exploit(){
+    echo -e " \e[31m -> \e[0m \e[32m [*] Installing post-exploitation tools \e[0m"
+    cd /opt/$mydirectory/postexploitation
+    git clone https://github.com/AlessandroZ/LaZagne.git
+    git clone https://github.com/CoreSecurity/impacket.git
+    pip install ldap3
+    git clone https://github.com/EmpireProject/Empire.git
+    cd /opt/$mydirectory
+}
+
 # Run functions here
 
 pre_install_setup
-install_MITMF
-install_wifite
+post-exploit
+install_mitm
+hash_identifiers
+wireless_tools
 install_routersploit
 install_airgeddon
+fix_perms
+create_symlink
