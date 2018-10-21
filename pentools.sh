@@ -499,7 +499,7 @@ then
     Kali="y"
 fi
 
-#Execute tailored installs based on distro detected
+#Execute tailored installs based on Distro detected
 
 if [[ "$Ubuntu" == "y" ]]
 then

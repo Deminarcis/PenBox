@@ -34,11 +34,6 @@ install_routersploit(){
     python3 -m pip install bluepy
 }
 
-install_airgeddon(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]Installing Airgeddon \e[0m"
-    cd $mydirectory/
-     git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
-}
 
 install_MITMF(){
     echo -e "\e[31m -> \e[0m \e[32m [*]Installing Man In The Middle Framework \e[0m"
@@ -154,6 +149,5 @@ install_mitm
 hash_identifiers
 wireless_tools
 install_routersploit
-install_airgeddon
 fix_perms
 create_symlink
