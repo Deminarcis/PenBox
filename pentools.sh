@@ -506,15 +506,22 @@ then
     exit
 fi
 
-## Ubuntu Install 18+ setup
-if cat /etc/lsb-release | grep '18.*'
+## Ubuntu Install setup
+if cat /etc/lsb-release | grep 'Ubuntu'
 then
     Ubuntu="y"
 fi
+
 #Setup and dependencies for a Kali install
 if cat /etc/lsb-release | grep 'Kali'
 then
     Kali="y"
+fi
+
+#detect and setup Fedora installs
+if cat /etc/lsb-release | grep 'Fedora'
+then
+    Fedora="y"
 fi
 
 #Execute tailored installs based on Distro detected
