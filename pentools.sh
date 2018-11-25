@@ -79,6 +79,9 @@ misc_tools(){
     git clone https://github.com/PenturaLabs/Linux_Exploit_Suggester.git
     git clone https://github.com/vulnersCom/getsploit
     git clone https://github.com/trustedsec/unicorn
+    git clone https://github.com/tokyoneon/Armor
+    cd Armor
+    chmod +x armor.sh
     cd /opt/$mydirectory
 }
 
