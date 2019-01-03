@@ -20,17 +20,12 @@ ubuntu_preinstall(){
 #fedora_preinstall(){
 #    echo "Installing some components before we begin. "
 #    dnf update --refresh -y
-<<<<<<< HEAD
-#    dnf install <Insert packages here>
-#}
-=======
 #    dnf install -y rake python2-pip curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn-gnome libwebkitgtk-1.0-0 libssl-devel libmysqlclient-devel libjpeg-devel libnetfilter-queue-devel ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-devel libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng tlp powertop openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad remmina libxfreerdp-client qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-devel python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-devel ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-devel libcapstone3 libcapstone-devel libssl-devel zlib1g-devel libxml2-devel libxslt1-devel libyaml-devel libffi-devel libssh-devel libpq-devel libsqlite-devel libsqlite3-devel libpcap-devel libgmp3-devel libpcap-devel libpcre3-devel libidn11-devel libcurl4-openssl-devel libpq5 libreadline5 nss libxss1 openssl ncurses-devel ncurses sni-qt
 #}
 
 install_pips(){
     pip install mitmproxy
 }
->>>>>>> 1bf5acf5de07b27f2a4a759eaed123c35ccff4a6
 
 install_gems(){
     gem install snmp
