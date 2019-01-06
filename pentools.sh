@@ -563,7 +563,6 @@ then
     wireless_tools
     wpscan
     linux_tools_offline
-    anonsurf
     fix_perms
     create_symlink
 fi
@@ -586,7 +585,6 @@ then
     privesc_tools
     misc_scripts
     wordlists
-    anonsurf
     linux_tools_offline
     fix_perms
     create_symlink
