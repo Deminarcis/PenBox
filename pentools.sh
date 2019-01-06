@@ -501,7 +501,7 @@ echo "[*] We will install this in /opt, what should we call the folder? "
 read -p "[*] Please enter the directory name you would like: " mydirectory
 
 if [[ -d /opt/$mydirectory/ ]]; then
-    read -p "This script has been run before and has made an updater script. Do you want to run the updater? " update
+    read -p "This script has been run before and can run as an updater script. Do you want to run the updater? " update
 fi
 
 clear
