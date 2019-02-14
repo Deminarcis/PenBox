@@ -11,7 +11,7 @@ dshell="$SHELL"
 mydirectory="/opt/pentools"
 
 #get to know where we are doing this on the system and as whom
-echo -e "This script is a slimmed down version of pentools, it installs specific tools and is aimed at people wanting a few frameworks/tools that are not included in a regular Kali install. \n \n  This script aims to provide the following: \n - Routersploit \n - Airgeddon \n - MITMF \n "
+echo -e "This script is a slimmed down version of pentools, it installs specific tools and is aimed at people wanting a few frameworks/tools that are not included in a regular Kali install. \n \n  This script aims to provide the following: \n - Routersploit \n - Airgeddon \n - MITMF \n as well as Pumpkin Wifi"
 echo -e "\e[31m This script is aimed at embedded devices (i.e a raspberry pi) \e[0m "
 read -p "[*]Please enter your username, this will help me fix permissions (use 'id' if unsure) : " myname
 clear
@@ -114,10 +114,6 @@ install_mitm(){
     git clone https://github.com/P0cL4bs/WiFi-Pumpkin.git
     pip install service_identity
     pip install scapy_http
-    cd WiFi-Pumpkin
-    chmod +x installer.sh
-    ./installer.sh --install
-    cd /opt/$mydirectory
 }
 
 fix_perms(){
@@ -141,6 +137,17 @@ post-exploit(){
     cd /opt/$mydirectory
 }
 
+wifi_pumpkin(){
+    cd /opt/$mydirectory/network
+    git clone https://github.com/P0cL4bs/WiFi-Pumpkin.git
+    pip install service_identity
+    pip install scapy_http
+    cd WiFi-Pumpkin
+    chmod +x installer.sh
+    ./installer.sh --install
+    cd /opt/$mydirectory
+}
+
 # Run functions here
 
 pre_install_setup
@@ -149,5 +156,6 @@ install_mitm
 hash_identifiers
 wireless_tools
 install_routersploit
+wifi_pumpkin
 fix_perms
 create_symlink

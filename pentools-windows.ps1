@@ -1,6 +1,5 @@
 ### Variables
 $dir='%APPDATA%\pentools'
-
 ### Welcome
 echo "Welcome to Pentools, this may work, it may not. This exists to help me learn Powershell"
 echo "Making a folder in appdata to put all this stuff"
