@@ -488,15 +488,6 @@ wireshark_from_ppa(){
     apt install wireshark
 }
 
-anonsurf(){
-    cd /opt/$mydirectory
-    mkdir -p "Anonimity Tools"
-    cd "Anonimity Tools"
-    git clone https://github.com/Und3rf10w/kali-anonsurf.git
-    cd kali-anonsurf
-    ./installer.sh
-}
-
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure): " myname
 echo "[*] We will install this in /opt, what should we call the folder? "
