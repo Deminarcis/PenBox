@@ -331,6 +331,9 @@ install_mitm(){
     cd WiFi-Pumpkin
     chmod +x installer.sh
     ./installer.sh --install
+    cd /opt/$mydirectory/network
+    sudo pip install dpkt regex
+    git clone https://github.com/vikwin/pcapfex.git
     cd /opt/$mydirectory
 }
 
