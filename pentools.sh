@@ -7,21 +7,21 @@ fi
 # Bookmarking where the script was run from
 runFolder="$PWD"
 
-#Groups to install
+#Install Groups (lists for OS at the bottom)
+
+setup_blackarch_repo(){
+  echo -e "\e[31m -> \e[0m \e[32m [*]Adding BlackArch repo. \e[0m"
+
+}
+
 ubuntu_preinstall(){
-    echo "Installing some components before we begin. "
+    echo -e "\e[31m -> \e[0m \e[32m [*]Making sure we have everything before we start the rest of the setup. \e[0m"
     dpkg --add-architecture i386
     apt-get update -y
     apt-get dist-upgrade -y
     export DEBIAN_FRONTEND=noninteractive
     apt-get install -yq curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn libwebkitgtk-1.0-0 libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-dev libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad libxfreerdp-client1.1 qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev libssl-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev nodejs libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.0.0 libncurses5-dev libncurses5 sni-qt sni-qt:i386
 }
-
-#fedora_preinstall(){
-#    echo "Installing some components before we begin. "
-#    dnf update --refresh -y
-#    dnf install -y rake python2-pip curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn-gnome libwebkitgtk-1.0-0 libssl-devel libmysqlclient-devel libjpeg-devel libnetfilter-queue-devel ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-devel libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng tlp powertop openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad remmina libxfreerdp-client qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-devel python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-devel ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-devel libcapstone3 libcapstone-devel libssl-devel zlib1g-devel libxml2-devel libxslt1-devel libyaml-devel libffi-devel libssh-devel libpq-devel libsqlite-devel libsqlite3-devel libpcap-devel libgmp3-devel libpcap-devel libpcre3-devel libidn11-devel libcurl4-openssl-devel libpq5 libreadline5 nss libxss1 openssl ncurses-devel ncurses sni-qt
-#}
 
 install_pips(){
     pip install mitmproxy
@@ -491,6 +491,33 @@ wireshark_from_ppa(){
     apt install wireshark
 }
 
+## Here we detect the OS so we know what functions/groups to use
+if cat /etc/lsb-release | grep 'Ubuntu'
+then
+    Ubuntu="y"
+fi
+
+#detect and setup Antergos installs
+if cat /etc/lsb-release | grep 'Antergos'
+then
+    Antergos="y"
+fi
+
+
+#detect and setup Arch installs (I'm guessing, this is currently untested)
+if cat /etc/lsb-release | grep 'Arch'
+then
+    Arch="y"
+fi
+
+# I have a different approach for Arch based install leveraging BlackArch. This approach makes the following questions useless, so we will check for an Arch base before bothering to ask
+
+if [[ $Antergos -e "y" ]] || [[ $Arch -e "y" ]]
+then
+
+fi
+
+
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure): " myname
 echo "[*] We will install this in /opt, what should we call the folder? "
@@ -508,24 +535,6 @@ if [[ "$update" == "y" ]]
 then
     run_updater
     exit
-fi
-
-## Ubuntu Install setup
-if cat /etc/lsb-release | grep 'Ubuntu'
-then
-    Ubuntu="y"
-fi
-
-#Setup and dependencies for a Kali install
-if cat /etc/lsb-release | grep 'Kali'
-then
-    Kali="y"
-fi
-
-#detect and setup Fedora installs
-if cat /etc/lsb-release | grep 'Fedora'
-then
-    Fedora="y"
 fi
 
 #Execute tailored installs based on Distro detected
@@ -558,29 +567,6 @@ then
     hash_identifiers
     wireless_tools
     wpscan
-    linux_tools_offline
-    fix_perms
-    create_symlink
-fi
-
-if [[ "$Kali" == "y" ]]
-then
-    preinstall
-    install_gems
-    create_directories
-    exploits
-    reverse_engineering
-    veil_framework
-    tool_cheatsheets
-    hash_identifiers
-    wireless_tools
-    wpscan
-    linux_tools_offline
-    install_volatility
-    post-exploit
-    privesc_tools
-    misc_scripts
-    wordlists
     linux_tools_offline
     fix_perms
     create_symlink
