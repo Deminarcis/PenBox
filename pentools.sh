@@ -11,7 +11,14 @@ runFolder="$PWD"
 
 setup_blackarch_repo(){
   echo -e "\e[31m -> \e[0m \e[32m [*]Adding BlackArch repo. \e[0m"
+  curl -O https://blackarch.org/strap.sh
+  chmod +x strap.sh
+  ./strap.sh
+}
 
+get_all_blackarch(){
+  pacman -S blackarch
+  pacman -S blackman
 }
 
 ubuntu_preinstall(){
@@ -514,7 +521,8 @@ fi
 
 if [[ $Antergos -e "y" ]] || [[ $Arch -e "y" ]]
 then
-
+  setup_blackarch_repo
+  get_all_blackarch
 fi
 
 
