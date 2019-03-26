@@ -14,6 +14,7 @@ setup_blackarch_repo(){
   curl -O https://blackarch.org/strap.sh
   chmod +x strap.sh
   ./strap.sh
+  rm strap.sh
 }
 
 get_all_blackarch(){
@@ -28,6 +29,23 @@ ubuntu_preinstall(){
     apt-get dist-upgrade -y
     export DEBIAN_FRONTEND=noninteractive
     apt-get install -yq curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn libwebkitgtk-1.0-0 libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-dev libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad libxfreerdp-client1.1 qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev libssl-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev nodejs libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.0.0 libncurses5-dev libncurses5 sni-qt sni-qt:i386
+}
+
+fedora_preinstall(){
+    echo -e "\e[31m -> \e[0m \e[32m [*]Making sure we have everything before we start the rest of the setup. \e[0m"
+    dnf update -y
+    dnf upgrade -y
+    dnf remove totem rhythmbox evolution -y
+    dnf install -y kernel-headers kernel-devel gcc glibc-headers rpm-build
+    dnf groupinstall -y "C Development Tools and Libraries"
+    dnf groupinstall -y "Development Tools"
+    dnf groupinstall -y security-lab
+    dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    rm rpmfusion-*
+    dnf install -y nano scalpel foremost scapy srm yersinia hping3 tcpreplay tcpick socat ophcrack gdb stunnel cmake flex eog openconnect gengetopt steghide whois aircrack-ng gimp iw extundelete rpcbind rdesktop sshfs bzip2 gnome-tweak-tool libtool irssi medusa hydra hydra-frontend terminator curl proxychains perl-Image-ExifTool p7zip p7zip-plugins libpcap htop gnupg subversion git traceroute gparted pidgin pidgin-otr ghex ettercap libnetfilter_queue-devel openvpn dsniff tcpdump john nmap nbtscan wireshark java-1.8.0-openjdk vconfig reaver pyrit thc-ipv6 freerdp qemu-kvm binwalk virt-manager qemu-system-x86 gvfs-fuse autoconf postgresql pgadmin3 chromium vlc php-cli
+    dnf install -y ruby ruby-devel rubygem-bundler rubygem-json rubygem-i18n ruby-irb rubygems rubygem-bigdecimal rubygem-rake rubygem-sqlite3 golang keepass
+    dnf install -y python python-pip python-setuptools python-libs python-magic python-netaddr python3-netaddr python-inotify python3-configobj python2-configobj python-msgpack python-requests python-pefile pylibpcap python-dns python-cryptography python-devel python-twisted capstone-python python-urllib3 python-pillow python-beautifulsoup python-beautifulsoup4 python2-selenium python3-selenium python-impacket
+    dnf install -y readline readline-devel capstone libnl3-devel capstone-devel capstone-python3 openssl openssl-devel libxml2 libxml2-devel libxslt libxslt-devel libyaml libyaml-devel libffi libffi-devel libssh libssh-devel libpqxx libpqxx-devel libsqlite3x libsqlite3x-devel libpcap libpcap-devel pcre libcurl-devel libnfnetlink libnfnetlink-devel libnetfilter_queue-devel zlib-devel zlibrary xz-devel zlibrary-devel postgresql-devel libidn libidn-devel ncurses-libs ncurses ncurses-devel libappindicator libindicator m2crypto
 }
 
 install_pips(){
@@ -499,28 +517,32 @@ wireshark_from_ppa(){
 }
 
 ## Here we detect the OS so we know what functions/groups to use
-if cat /etc/lsb-release | grep 'Ubuntu'
-then
-    Ubuntu="y"
-fi
-
 #detect and setup Antergos installs
-if cat /etc/lsb-release | grep 'Antergos'
+if cat /etc/os-release | grep 'Antergos'
 then
     Antergos="y"
 fi
 
 
 #detect and setup Arch installs (I'm guessing, this is currently untested)
-if cat /etc/lsb-release | grep 'Arch'
+if cat /etc/os-release | grep 'Arch'
 then
     Arch="y"
 fi
 
+if cat /etc/lsb-release | grep 'Ubuntu'
+then
+    Ubuntu="y"
+fi
+
+if cat /etc/lsb-release | grep 'Fedora'
+then
+    Fedora="y"
+fi
+
 # I have a different approach for Arch based install leveraging BlackArch. This approach makes the following questions useless, so we will check for an Arch base before bothering to ask
 
-if [[ $Antergos -e "y" ]] || [[ $Arch -e "y" ]]
-then
+if [[ "$Antergos" == "y" ]] || [[ "$Arch" == "y" ]]; then
   setup_blackarch_repo
   get_all_blackarch
 fi
@@ -550,6 +572,39 @@ fi
 if [[ "$Ubuntu" == "y" ]]
 then
     ubuntu_preinstall
+    install_gems
+    create_directories
+    install_metasploit
+    misc_tools
+    wordlists
+    install_burp
+    misc_scripts
+    install_tor
+    php_reverse
+    privesc_tools
+    post-exploit
+    install_volatility
+    recon_tools
+    install_pwcrackers
+    webapp_tools
+    install_mitm
+    install_social_engineering
+    reverse_engineering
+    exploits
+    privacy_escalation
+    veil_framework
+    tool_cheatsheets
+    hash_identifiers
+    wireless_tools
+    wpscan
+    linux_tools_offline
+    fix_perms
+    create_symlink
+fi
+
+if [[ "$Fedora" == "y" ]]
+then
+    fedora_preinstall
     install_gems
     create_directories
     install_metasploit
