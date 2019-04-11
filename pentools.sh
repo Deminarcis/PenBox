@@ -516,6 +516,32 @@ wireshark_from_ppa(){
     apt install wireshark
 }
 
+  echo "
+    !---------------------------------! PENTOOLS !---------------------------------!
+    Welcome to Pentools. This script installs penetration testing tools on regular
+    Linux Distributions aiming at Arch/Antegros, Ubuntu and Fedora, it might work
+    elsewhere but I dont know. There are select Windows tools in this script but
+    in terms of general use, this script will not work on Windows.
+    This Script is not something that is designed to replace a dedicated security
+    or pentesting distro but aiming to compliment the tools where other
+    restrictions may be placed on what can be deployed oin certain situations,
+    This may also be helpful for people using Linux as a host and who dont want
+    to use a VM for CTF or HackTheBox.
+    Where possible I recommedn preferring BlackArch, Kali or Parrot as they
+    are designed to be used for penetration testing and provide many advantages
+    over this script. Please proceed with caution, If this breaks your install I
+    am not repsonisble and you get to keep the pieces. If per chance this does
+    break things, please open an issue on the github repo this script came from.
+
+                                      HAPPY HACKING!
+
+
+                    The installation process will start in 30 seconds
+                    If you've changed your mind, press "Ctrl + C" now
+    !---------------------------------! PENTOOLS !---------------------------------!
+  "
+  sleep 60
+
 ## Here we detect the OS so we know what functions/groups to use
 #detect and setup Antergos installs
 if cat /etc/os-release | grep 'Antergos'
