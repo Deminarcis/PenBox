@@ -20,7 +20,6 @@ if [[ -f /usr/bin/zsh ]]; then
       fi
     " >> /home/'$USER'/.zshrc
 fi
-
 }
 
 #Make a bin folder if we dont have one
