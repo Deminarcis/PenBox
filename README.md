@@ -1,16 +1,18 @@
-#### Pentest-tools
+#### Pentools
 
 Forked from madmantm.
 
-Script to install security tools, and other required tools for penetration testing and network auditing on your system without the need to fidget with a VM and pass off USB or PCI devices
+This is a script to install Penetration testing tools, which are useful for network auditing among other things. I dont condone the use of this script to do horrible things to horrible/not horrible people. I am not responsible for your actions , so you do you.
+I put this together because I got tired of installing a VM then passing off USB devices, which can be difficult from a Laptop PC due to I/O restrictions
 
-To install, extract anywhere and use:
+To install, clone the repo and use:
 ```
-chmod +x install-pentest-tools.sh
+chmod +x pentools<variant>.sh
 
-./install-pentest-tools.sh.
+sudo ./pentools<variant>.sh
 
 ```
+
 Tools are installed in /opt in a folder of your choosing with the exception of tools pulled in for Arch, they are system-wide.
 
 Updated to include BlackArch.... just in-case you use Arch
