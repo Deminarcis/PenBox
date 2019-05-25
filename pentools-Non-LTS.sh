@@ -453,6 +453,7 @@ wireless_tools(){
     cd /opt/$mydirectory/wireless
     git clone https://github.com/DanMcInerney/wifijammer.git
     git clone https://github.com/derv82/wifite2.git
+    git clone https://github.com/bitbrute/evillimiter.git
     git clone https://github.com/OpenSecurityResearch/hostapd-wpe.git
     git clone https://github.com/sophron/wifiphisher.git
     git clone https://github.com/s0lst1c3/eaphammer.git
@@ -461,6 +462,9 @@ wireless_tools(){
     git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
     cd wifite2
     python setup.py install
+    cd /opt/$mydirectory
+    cd evillimiter
+    python3 setup.py install
     cd /opt/$mydirectory
 }
 
@@ -517,7 +521,7 @@ wireshark_from_ppa(){
 }
 
 echo -e "
-    \e[31m  
+    \e[31m
         !-------------------------------------!  PENTOOLS  !----------------------------------------!
 
 
