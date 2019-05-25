@@ -520,6 +520,18 @@ wireshark_from_ppa(){
     apt install wireshark
 }
 
+install_frameworks(){
+    cd /opt/$mydirectory
+    echo -e " \e[31m -> \e[0m \e[32m [*] Getting things together so we can install the framework collection \e[0m"
+    mkdir -p frameworks
+    apt install -y libncurses5 libxml2 nmap tcpdump libexiv2-dev build-essential python-pip default-libmysqlclient-dev python-xmpp
+    cd frameworks
+    git clone https://github.com/0xinfection/tidos-framework.git
+    cd tidos-framework
+    chmod +x install
+    ./install
+}
+
 echo -e "
     \e[31m
         !-------------------------------------!  PENTOOLS  !----------------------------------------!
