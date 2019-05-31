@@ -28,7 +28,7 @@ ubuntu_preinstall(){
     apt-get update -y
     apt-get dist-upgrade -y
     export DEBIAN_FRONTEND=noninteractive
-    apt-get install -yq curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn libwebkitgtk-1.0-0 libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-dev libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad libxfreerdp-client1.1 qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev libssl-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev nodejs libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.0.0 libncurses5-dev libncurses5 sni-qt sni-qt:i386
+    apt-get install -yq curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-8-jre p7zip network-manager-openvpn libwebkitgtk-1.0-0 libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-dev libimage-exiftool-perl exiftool p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad libxfreerdp-client1.1 qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-nfqueue python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev libssl-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev nodejs libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.0.0 libncurses5-dev libncurses5 sni-qt sni-qt:i386
 }
 
 fedora_preinstall(){
@@ -42,7 +42,7 @@ fedora_preinstall(){
     dnf groupinstall -y security-lab
     dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
     rm rpmfusion-*
-    dnf install -y nano scalpel foremost scapy srm yersinia hping3 tcpreplay tcpick socat ophcrack gdb stunnel cmake flex eog openconnect gengetopt steghide whois aircrack-ng gimp iw extundelete rpcbind rdesktop sshfs bzip2 gnome-tweak-tool libtool irssi medusa hydra hydra-frontend terminator curl proxychains perl-Image-ExifTool p7zip p7zip-plugins libpcap htop gnupg subversion git traceroute gparted pidgin pidgin-otr ghex ettercap libnetfilter_queue-devel openvpn dsniff tcpdump john nmap nbtscan wireshark java-1.8.0-openjdk vconfig reaver pyrit thc-ipv6 freerdp qemu-kvm binwalk virt-manager qemu-system-x86 gvfs-fuse autoconf postgresql pgadmin3 chromium vlc php-cli
+    dnf install -y nano scalpel foremost scapy srm yersinia hping3 tcpreplay tcpick socat ophcrack gdb stunnel cmake flex eog openconnect gengetopt steghide whois aircrack-ng gimp iw extundelete rpcbind rdesktop sshfs bzip2 gnome-tweak-tool libtool irssi medusa hydra hydra-frontend terminator curl proxychains perl-Image-ExifTool exiftool p7zip p7zip-plugins libpcap htop gnupg subversion git traceroute gparted pidgin pidgin-otr ghex ettercap libnetfilter_queue-devel openvpn dsniff tcpdump john nmap nbtscan wireshark java-1.8.0-openjdk vconfig reaver pyrit thc-ipv6 freerdp qemu-kvm binwalk virt-manager qemu-system-x86 gvfs-fuse autoconf postgresql pgadmin3 chromium vlc php-cli
     dnf install -y ruby ruby-devel rubygem-bundler rubygem-json rubygem-i18n ruby-irb rubygems rubygem-bigdecimal rubygem-rake rubygem-sqlite3 golang keepass
     dnf install -y python python-pip python-setuptools python-libs python-magic python-netaddr python3-netaddr python-inotify python3-configobj python2-configobj python-msgpack python-requests python-pefile pylibpcap python-dns python-cryptography python-devel python-twisted capstone-python python-urllib3 python-pillow python-beautifulsoup python-beautifulsoup4 python2-selenium python3-selenium python-impacket
     dnf install -y readline readline-devel capstone libnl3-devel capstone-devel capstone-python3 openssl openssl-devel libxml2 libxml2-devel libxslt libxslt-devel libyaml libyaml-devel libffi libffi-devel libssh libssh-devel libpqxx libpqxx-devel libsqlite3x libsqlite3x-devel libpcap libpcap-devel pcre libcurl-devel libnfnetlink libnfnetlink-devel libnetfilter_queue-devel zlib-devel zlibrary xz-devel zlibrary-devel postgresql-devel libidn libidn-devel ncurses-libs ncurses ncurses-devel libappindicator libindicator m2crypto
@@ -453,6 +453,7 @@ wireless_tools(){
     cd /opt/$mydirectory/wireless
     git clone https://github.com/DanMcInerney/wifijammer.git
     git clone https://github.com/derv82/wifite2.git
+    git clone https://github.com/bitbrute/evillimiter.git
     git clone https://github.com/OpenSecurityResearch/hostapd-wpe.git
     git clone https://github.com/sophron/wifiphisher.git
     git clone https://github.com/s0lst1c3/eaphammer.git
@@ -461,6 +462,9 @@ wireless_tools(){
     git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
     cd wifite2
     python setup.py install
+    cd /opt/$mydirectory
+    cd evillimiter
+    python3 setup.py install
     cd /opt/$mydirectory
 }
 
@@ -516,8 +520,20 @@ wireshark_from_ppa(){
     apt install wireshark
 }
 
+install_frameworks(){
+    cd /opt/$mydirectory
+    echo -e " \e[31m -> \e[0m \e[32m [*] Getting things together so we can install the framework collection \e[0m"
+    mkdir -p frameworks
+    apt install -y libncurses5 libxml2 nmap tcpdump libexiv2-dev build-essential python-pip default-libmysqlclient-dev python-xmpp
+    cd frameworks
+    git clone https://github.com/0xinfection/tidos-framework.git
+    cd tidos-framework
+    chmod +x install
+    ./install
+}
+
 echo -e "
-    \e[31m  
+    \e[31m
         !-------------------------------------!  PENTOOLS  !----------------------------------------!
 
 
