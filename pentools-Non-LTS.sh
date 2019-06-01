@@ -678,4 +678,4 @@ then
 fi
 
 echo -e " \e[31m -> \e[0m \e[32m [*] Setting up symlinks in your rc file(s) to make this easier to use \e[0m"
-sh './find-exec.sh'
+./find-exec.sh
