@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+### TODO: Rewrite me in python?
+
 #Variables
 
 update_shellrc(){
