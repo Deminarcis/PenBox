@@ -26,7 +26,7 @@ fnames = ([file for root, dirs, files in os.walk(dir)
     for file in files
     if file.endswith('.sh') or file.endswith('.py') or file.endswith('.rb') #or file.endswith('.png') or file.endswith('.pdf')
     ])
-for fname in fnames: os.system("ln -s %s /home/$USER/.local/bin" % fnames)
+for fname in fnames: os.system("ln -s %s /home/$USER/.local/bin" % fname)
 if os.access("~/.bashrc", os.R_OK):
     update_bashrc()
 if os.access("~/.zshrc", os.R_OK):
