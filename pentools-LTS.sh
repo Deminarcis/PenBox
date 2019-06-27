@@ -584,12 +584,12 @@ then
     Arch="y"
 fi
 
-if cat /etc/lsb-release | grep 'Ubuntu'
+if cat /etc/os-release | grep 'Ubuntu'
 then
     Ubuntu="y"
 fi
 
-if cat /etc/lsb-release | grep 'Fedora'
+if cat /etc/os-release | grep 'Fedora'
 then
     Fedora="y"
 fi
@@ -691,4 +691,4 @@ fi
 
 #find-exec is broken, disabling for now
 #echo -e " \e[31m -> \e[0m \e[32m [*] Setting up symlinks in your rc file(s) to make this easier to use \e[0m"
-#./find-exec.sh
+#python3 find-exec.py
