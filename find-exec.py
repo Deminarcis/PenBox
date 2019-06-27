@@ -19,7 +19,7 @@ def update_zshrc():
 
 os.system("mkdir -p /home/'$USER'/.local/bin")
 #Run Chunk
-os.system("read -p 'Where did you install pentools?  ' runFolder")
+dir = '/opt/haxxx'
 print("Finding executable files  in $runFolder")
 #os.system("find $runFolder -type f -executable -name '*.py' -o -name '*.rb' -o -name '*.sh' -exec 'ln -s '{}' '/home/$USER/.local/bin''")
 fnames = ([file for root, dirs, files in os.walk(dir)

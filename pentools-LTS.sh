@@ -603,16 +603,14 @@ fi
 
 
 #get to know where we are doing this on the system and as whom
-read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname
-echo "[*] We will install this in /opt, what should we call the folder? "
-read -p "[*] Please enter the directory name you would like: " mydirectory
+read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname mydirectory = "/opt/haxxx"
 
-if [[ -d /opt/$mydirectory/ ]]; then
+if [[ -d $mydirectory ]]; then
     read -p "This script has been run before and can run as an updater script. Do you want to run the updater? " update
 fi
 
 clear
-echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
+echo -e "Your files will be installed to \e[35m $mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
 
 
 if [[ "$update" == "y" ]]
