@@ -6,6 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 # Bookmarking where the script was run from
 runFolder="$PWD"
+myDirectory = "/opt/haxxx"
 
 #Install Groups (lists for OS at the bottom)
 
@@ -60,24 +61,24 @@ install_gems(){
 
 create_directories(){
     echo -e "\e[31m -> \e[0m \e[32m [*]create default core tools directory \e[0m"
-    mkdir /opt/$mydirectory
-    cd /opt/$mydirectory/
-    mkdir /opt/$mydirectory/cheatsheets
-    mkdir /opt/$mydirectory/network
-    mkdir /opt/$mydirectory/webapps
-    mkdir /opt/$mydirectory/exploits
-    mkdir /opt/$mydirectory/mobile
-    mkdir /opt/$mydirectory/wordlists
-    mkdir /opt/$mydirectory/escalation
-    mkdir /opt/$mydirectory/pwcracking
-    mkdir /opt/$mydirectory/reverse
-    mkdir /opt/$mydirectory/recon
-    mkdir /opt/$mydirectory/wireless
-    mkdir /opt/$mydirectory/windows
-    mkdir /opt/$mydirectory/linux
-    mkdir /opt/$mydirectory/postexploitation
-    mkdir /opt/$mydirectory/social_engineering
-    mkdir -p /opt/mydirectory/bin
+    mkdir $myDirectory
+    cd $myDirectory/
+    mkdir $myDirectory/cheatsheets
+    mkdir $myDirectory/network
+    mkdir $myDirectory/webapps
+    mkdir $myDirectory/exploits
+    mkdir $myDirectory/mobile
+    mkdir $myDirectory/wordlists
+    mkdir $myDirectory/escalation
+    mkdir $myDirectory/pwcracking
+    mkdir $myDirectory/reverse
+    mkdir $myDirectory/recon
+    mkdir $myDirectory/wireless
+    mkdir $myDirectory/windows
+    mkdir $myDirectory/linux
+    mkdir $myDirectory/postexploitation
+    mkdir $myDirectory/social_engineering
+    
 }
 
 install_metasploit(){
@@ -89,7 +90,7 @@ install_metasploit(){
 
 install_routersploit(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Installing Routersploit \e[0m"
-    cd /opt/$mydirectory/
+    cd $myDirectory/
     sudo apt-get install git python3-pip libglib2.0-dev
     git clone https://www.github.com/threat9/routersploit
     cd routersploit
@@ -99,7 +100,7 @@ install_routersploit(){
 
 misc_tools(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing other miscellaneous exploit tools \e[0m"
-    cd /opt/$mydirectory/exploits
+    cd $myDirectory/exploits
     git clone https://github.com/longld/peda.git
     git clone https://github.com/govolution/avet
     git clone https://github.com/g0tmi1k/exe2hex.git
@@ -111,90 +112,90 @@ misc_tools(){
     git clone https://github.com/tokyoneon/Armor
     cd Armor
     chmod +x armor.sh
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 wordlists(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Gathering wordlists \e[0m"
-    cd /opt/$mydirectory/wordlists
+    cd $myDirectory/wordlists
     git clone https://github.com/danielmiessler/SecLists.git
     wget -nc http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2
     wget -nc http://www.tekdefense.com/downloads/wordlists/1aNormusWL.zip
     wget -nc http://www.tekdefense.com/downloads/wordlists/KippoWordlist.txt
     git clone https://github.com/digininja/CeWL.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 install_burp(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing Burpsuite \e[0m"
-    cd /opt/$mydirectory/webapps
-    mkdir /opt/$mydirectory/webapps/burp_proxy
-    cd /opt/$mydirectory/webapps/burp_proxy
+    cd $myDirectory/webapps
+    mkdir $myDirectory/webapps/burp_proxy
+    cd $myDirectory/webapps/burp_proxy
     curl https://portswigger.net/DownloadUpdate.ashx?Product=Free -o burpsuite_free.jar
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 misc_scripts(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Gathering some extra scripts \e[0m"
-    cd /opt/$mydirectory
-    mkdir /opt/$mydirectory/misc
-    cd /opt/$mydirectory/misc
+    cd $myDirectory
+    mkdir $myDirectory/misc
+    cd $myDirectory/misc
     git clone https://github.com/ChrisTruncer/PenTestScripts.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 install_tor(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Install Tor \e[0m"
-    mkdir /opt/$mydirectory/network/torbrowser
-    cd /opt/$mydirectory/network/torbrowser
+    mkdir $myDirectory/network/torbrowser
+    cd $myDirectory/network/torbrowser
     wget -nc https://www.torproject.org/dist/torbrowser/8.0/tor-browser-linux64-8.0_en-US.tar.xz
     tar -xf tor-browser-linux64-8.0_en-US.tar.xz
     rm -rf tor-browser-linux64-8.0_en-US.tar.xz
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 php_reverse(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Gathering PHP reverse shell tools \e[0m"
-    mkdir /opt/$mydirectory/network/reverse_shells
-    cd /opt/$mydirectory/network/reverse_shells
+    mkdir $myDirectory/network/reverse_shells
+    cd $myDirectory/network/reverse_shells
     wget -nc http://pentestmonkey.net/tools/php-reverse-shell/php-reverse-shell-1.0.tar.gz
-    tar -xf /opt/$mydirectory/network/reverse_shells/php-reverse-shell-1.0.tar.gz
-    cd /opt/$mydirectory
+    tar -xf $myDirectory/network/reverse_shells/php-reverse-shell-1.0.tar.gz
+    cd $myDirectory
 }
 
 privesc_tools(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing privesc tools \e[0m"
-    cd /opt/$mydirectory/escalation
+    cd $myDirectory/escalation
     git clone https://github.com/mattifestation/PowerSploit.git
     git clone https://github.com/putterpanda/mimikittenz.git
     git clone https://github.com/PowerShellEmpire/PowerTools.git
     git clone https://github.com/Kevin-Robertson/Inveigh.git
     git clone https://github.com/xan7r/kerberoast.git
     git clone https://github.com/breenmachine/RottenPotatoNG
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 post-exploit(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing post-exploitation tools \e[0m"
-    cd /opt/$mydirectory/postexploitation
+    cd $myDirectory/postexploitation
     git clone https://github.com/AlessandroZ/LaZagne.git
     git clone https://github.com/CoreSecurity/impacket.git
     pip install ldap3
     git clone https://github.com/EmpireProject/Empire.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 install_volatility(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Install the volatility framework \e[0m"
-    mkdir /opt/$mydirectory/forensics
-    cd /opt/$mydirectory/forensics
+    mkdir $myDirectory/forensics
+    cd $myDirectory/forensics
     git clone https://github.com/volatilityfoundation/volatility.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 recon_tools(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing other recon tools \e[0m"
-    cd /opt/$mydirectory/recon
+    cd $myDirectory/recon
     git clone https://github.com/guelfoweb/knock.git
     git clone https://github.com/laramies/theHarvester.git
     git clone https://github.com/eth0izzle/bucket-stream
@@ -216,52 +217,52 @@ recon_tools(){
     git clone https://github.com/leebaird/discover.git
     git clone https://github.com/Mr-Un1k0d3r/RedTeamPowershellScripts.git
     git clone https://github.com/makefu/dnsmap.git
-    cd /opt/$mydirectory/recon/dnsmap
+    cd $myDirectory/recon/dnsmap
     make
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 install_pwcrackers(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing password cracking tools \e[0m"
-    cd /opt/$mydirectory/pwcracking/
+    cd $myDirectory/pwcracking/
     git clone https://github.com/lanjelot/patator.git
     git clone https://github.com/mikesiegel/ews-crack
     git clone https://github.com/galkan/crowbar
     git clone https://github.com/magnumripper/JohnTheRipper.git
-    cd /opt/$mydirectory/pwcracking/JohnTheRipper/src
+    cd $myDirectory/pwcracking/JohnTheRipper/src
     ./configure
     make
-    cd /opt/$mydirectory
-    mkdir /opt/$mydirectory/pwcracking/hashcat
-    cd /opt/$mydirectory/pwcracking/hashcat
+    cd $myDirectory
+    mkdir $myDirectory/pwcracking/hashcat
+    cd $myDirectory/pwcracking/hashcat
     wget https://hashcat.net/files/hashcat-4.0.1.7z
     7z x hashcat-4.0.1.7z
-    mkdir /opt/$mydirectory/pwcracking/crunch
-    cd /opt/$mydirectory/pwcracking/crunch
+    mkdir $myDirectory/pwcracking/crunch
+    cd $myDirectory/pwcracking/crunch
     wget -nc "http://downloads.sourceforge.net/project/crunch-wordlist/crunch-wordlist/crunch-3.6.tgz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fcrunch-wordlist%2F&ts=1473785126&use_mirror=pilotfiber" -O crunch-3.6.tgz
-    cd /opt/$mydirectory/pwcracking/
+    cd $myDirectory/pwcracking/
     git clone https://github.com/ZerBea/hcxtools.git
     cd hcxtools
     make
     make install
-    cd /opt/$mydirectory/pwcracking/
+    cd $myDirectory/pwcracking/
     git clone https://github.com/ZerBea/hcxdumptool.git
     cd hcxdumptool
     make
     make install
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 webapp_tools(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing arachni and other webapp tools \e[0m"
-    cd /opt/$mydirectory/webapps
+    cd $myDirectory/webapps
     wget http://testssl.sh/testssl.sh
-    mkdir /opt/$mydirectory/webapps/arachni
-    cd /opt/$mydirectory/webapps/arachni
+    mkdir $myDirectory/webapps/arachni
+    cd $myDirectory/webapps/arachni
     wget -nc https://github.com/Arachni/arachni/releases/download/v1.5.1/arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
     tar -xf arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
     rm arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
-    cd /opt/$mydirectory/webapps
+    cd $myDirectory/webapps
     git clone https://github.com/XiphosResearch/exploits.git
     git clone https://github.com/UltimateHackers/XSStrike
     git clone https://github.com/nahamsec/JSParser.git
@@ -299,19 +300,19 @@ webapp_tools(){
     cd dirb222
     ./configure
     make
-    cd /opt/$mydirectory/webapps
+    cd $myDirectory/webapps
     wget -nc "http://downloads.sourceforge.net/project/dirbuster/DirBuster%20%28jar%20%2B%20lists%29/1.0-RC1/DirBuster-1.0-RC1.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdirbuster%2Ffiles%2FDirBuster%2520%2528jar%2520%252B%2520lists%2529%2F1.0-RC1%2F&ts=1443459199&use_mirror=iweb" -O DirBuster-1.0-RC1.tar.bz2
     bunzip2 DirBuster-1.0-RC1.tar.bz2
     tar -xf DirBuster-1.0-RC1.tar
     rm DirBuster-1.0-RC1.tar
-    cd /opt/$mydirectory/webapps/weevely3
+    cd $myDirectory/webapps/weevely3
     pip install -r requirements.txt
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 install_mitm(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for mitm/network/scada \e[0m"
-    cd /opt/$mydirectory/network/
+    cd $myDirectory/network/
     wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.nse -O /usr/share/nmap/scripts/vulners.nse
     git clone https://github.com/scadastrangelove/SCADAPASS.git
     git clone https://github.com/SySS-Research/Seth
@@ -336,35 +337,35 @@ install_mitm(){
     git clone https://github.com/Hood3dRob1n/Reverser.git
     git clone https://github.com/SpiderLabs/ikeforce.git
     go get github.com/bettercap/bettercap
-    mv /home/$myname/go /opt/$mydirectory/network/bettercap
+    mv /home/$myname/go $myDirectory/network/bettercap
     git clone https://github.com/robertdavidgraham/masscan.git
-    cd /opt/$mydirectory/network/masscan/bin
+    cd $myDirectory/network/masscan/bin
     make
-    cd /opt/$mydirectory/network/MITMf
+    cd $myDirectory/network/MITMf
     pip install BeautifulSoup4
     pip install -r requirements.txt
     pip install mysql-python
-    cd /opt/$mydirectory/network/MITMf/libs/bdfactory/
+    cd $myDirectory/network/MITMf/libs/bdfactory/
     git clone https://github.com/secretsquirrel/the-backdoor-factory.git .
-    cd /opt/$mydirectory/network/CrackMapExec
+    cd $myDirectory/network/CrackMapExec
     pip install -r requirements.txt
     python setup.py install
-    cd /opt/$mydirectory/network
+    cd $myDirectory/network
     git clone https://github.com/P0cL4bs/WiFi-Pumpkin.git
     pip install service_identity
     pip install scapy_http
     cd WiFi-Pumpkin
     chmod +x installer.sh
     ./installer.sh --install
-    cd /opt/$mydirectory/network
+    cd $myDirectory/network
     sudo pip install dpkt regex
     git clone https://github.com/vikwin/pcapfex.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 install_social_engineering(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for social engineering \e[0m"
-    cd /opt/$mydirectory/social_engineering
+    cd $myDirectory/social_engineering
     git clone https://github.com/trustedsec/social-engineer-toolkit.git
     git clone https://github.com/philwantsfish/shard
     git clone https://github.com/mwrlabs/XRulez.git
@@ -373,25 +374,25 @@ install_social_engineering(){
     git clone https://github.com/khast3x/h8mail.git
     cd h8mail
     pip3 install -r requirements.txt
-    cd /opt/$mydirectory
+    cd $myDirectory
     wget -nc https://github.com/gophish/gophish/releases/download/v0.7.1/gophish-v0.7.1-linux-64bit.zip
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 reverse_engineering(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for reverse engineering \e[0m"
-    cd /opt/$mydirectory/reverse/
+    cd $myDirectory/reverse/
     git clone https://github.com/Gallopsled/pwntools.git
     git clone https://github.com/hasherezade/shellconv.git
     git clone https://github.com/botherder/viper.git
     wget -nc "https://github.com/java-decompiler/jd-gui/releases/download/v1.4.0/jd-gui-1.4.0.jar"
     git clone https://github.com/mirror/firmware-mod-kit.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 exploits(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing exploit related tools \e[0m"
-    cd /opt/$mydirectory/exploits
+    cd $myDirectory/exploits
     git clone https://github.com/offensive-security/exploit-database
     git clone https://github.com/toolswatch/vFeed.git
     git clone https://github.com/secretsquirrel/the-backdoor-factory
@@ -399,33 +400,33 @@ exploits(){
     git clone https://github.com/peewpw/Invoke-PSImage
     git clone https://github.com/madmantm/powershell
     wget --header="Accept: text/html" --user-agent="MOZILLA" https://www.shellterproject.com/Downloads/Shellter/Latest/shellter.zip
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 privacy_escalation(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools for privelege escalation \e[0m"
-    cd /opt/$mydirectory/escalation
+    cd $myDirectory/escalation
     git clone https://github.com/samratashok/nishang.git
     git clone https://github.com/rebootuser/LinEnum.git
     git clone https://github.com/huntergregal/mimipenguin.git
-    mkdir /opt/$mydirectory/escalation/mimikatz
-    cd /opt/$mydirectory/escalation/mimikatz
+    mkdir $myDirectory/escalation/mimikatz
+    cd $myDirectory/escalation/mimikatz
     wget -nc http://blog.gentilkiwi.com/downloads/mimikatz_trunk.zip
     unzip -o  mimikatz_trunk.zip
     rm -rf mimikatz_trunk.zip
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 veil_framework(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing the veil framework \e[0m"
-    cd /opt/$mydirectory/exploits
+    cd $myDirectory/exploits
     git clone https://github.com/Veil-Framework/Veil-Evasion.git
     git clone https://github.com/Veil-Framework/Veil-PowerView.git
 }
 
 tool_cheatsheets(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Gathering cheatsheets \e[0m"
-    cd /opt/$mydirectory/cheatsheets
+    cd $myDirectory/cheatsheets
     git clone https://github.com/HarmJ0y/CheatSheets
     git clone https://github.com/aramosf/sqlmap-cheatsheet.git
     git clone https://github.com/wsargent/docker-cheat-sheet.git
@@ -433,24 +434,24 @@ tool_cheatsheets(){
     git clone https://github.com/enaqx/awesome-pentest
     git clone https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet
     git clone https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 hash_identifiers(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing tools to identify hashes \e[0m"
-    mkdir /opt/$mydirectory/crypto
-    cd /opt/$mydirectory/crypto
+    mkdir $myDirectory/crypto
+    cd $myDirectory/crypto
     git clone https://github.com/SmeegeSec/HashTag.git
     cd HashTag
     chmod +x Hashtag.py
     cd ..
     git clone https://github.com/psypanda/hashID.git
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 wireless_tools(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing wireless et wps tools \e[0m"
-    cd /opt/$mydirectory/wireless
+    cd $myDirectory/wireless
     git clone https://github.com/DanMcInerney/wifijammer.git
     git clone https://github.com/derv82/wifite2.git
     git clone https://github.com/bitbrute/evillimiter.git
@@ -462,24 +463,24 @@ wireless_tools(){
     git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
     cd wifite2
     python setup.py install
-    cd /opt/$mydirectory
+    cd $myDirectory
     cd evillimiter
     python3 setup.py install
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 wpscan(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing requirements for wpscan \e[0m"
-    cd /opt/$mydirectory/webapps/wpscan
+    cd $myDirectory/webapps/wpscan
     bundle install
-    cd /opt/$mydirectory
+    cd $myDirectory
 }
 
 
 windows_tools_offline(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing Windows tools just in case no internets / also might be flagged by pesky webfiltering systems \e[0m"
-    mkdir /opt/$mydirectory/windows/win_tools
-    cd /opt/$mydirectory/windows/win_tools
+    mkdir $myDirectory/windows/win_tools
+    cd $myDirectory/windows/win_tools
     wget -nc "http://www.oxid.it/downloads/ca_setup.exe"
     wget -nc "http://sniff.su/Intercepter-NG.v1.0.zip"
     wget -nc "http://downloads.metasploit.com/data/releases/metasploit-latest-windows-installer.exe"
@@ -493,24 +494,24 @@ windows_tools_offline(){
 
 linux_tools_offline(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing linux tools just in case no internets \e[0m"
-    mkdir /opt/$mydirectory/linux/lin_tools
-    cd /opt/$mydirectory/linux/lin_tools
+    mkdir $myDirectory/linux/lin_tools
+    cd $myDirectory/linux/lin_tools
     wget -nc "http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run"
     wget -nc "https://out7.hex-rays.com/files/idafree70_linux.run"
 }
 
 fix_perms(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Correcting permissions \e[0m"
-    chown -R $myname:$myname /opt/$mydirectory
+    chown -R $myname:$myname $myDirectory
 }
 
 create_symlink(){
     cd $HOME
-    ln -s /opt/$mydirectory ./
+    ln -s $myDirectory ./
 }
 
 run_updater(){
-    cd /opt/$mydirectory
+    cd $myDirectory
     echo 'I have not figured out how to automatically update Tor. You will need to maintain this yourself'
     find . -type d -name .git -exec git --git-dir={} --work-tree=$PWD/{}/.. pull \;
 }
@@ -592,15 +593,13 @@ fi
 
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname
-echo "[*] We will install this in /opt, what should we call the folder? "
-read -p "[*] Please enter the directory name you would like: " mydirectory
 
-if [[ -d /opt/$mydirectory/ ]]; then
+if [[ -d $myDirectory/ ]]; then
     read -p "This script has been run before and can run as an updater script. Do you want to run the updater? " update
 fi
 
 clear
-echo -e "Your files will be installed to \e[35m /opt/$mydirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
+echo -e "Your files will be installed to \e[35m $myDirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
 
 
 if [[ "$update" == "y" ]]
