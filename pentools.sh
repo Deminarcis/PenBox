@@ -10,28 +10,6 @@ myDirectory = "/opt/haxxx"
 
 #Install Groups (lists for OS at the bottom)
 
-setup_blackarch_repo(){
-  echo -e "\e[31m -> \e[0m \e[32m [*]Adding BlackArch repo. \e[0m"
-  curl -O https://blackarch.org/strap.sh
-  chmod +x strap.sh
-  ./strap.sh
-  rm strap.sh
-}
-
-get_all_blackarch(){
-  pacman -S blackarch
-  pacman -S blackman
-}
-
-ubuntu_preinstall(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]Making sure we have everything before we start the rest of the setup. \e[0m"
-    dpkg --add-architecture i386
-    apt-get update -y
-    apt-get dist-upgrade -y
-    export DEBIAN_FRONTEND=noninteractive
-    apt-get install -yq libnl-3-dev curl vlan reaver pyrit thc-ipv6 netwox nmap phantomjs nbtscan wireshark-qt tshark dsniff tcpdump openjdk-11-jre p7zip network-manager-openvpn libssl-dev libmysqlclient-dev libjpeg-dev libnetfilter-queue-dev ghex  traceroute lft gparted autopsy subversion git gnupg libpcap0.8 libpcap0.8-dev libimage-exiftool-perl p7zip-full proxychains hydra hydra-gtk medusa libtool build-essential snapd bzip2 extundelete rpcbind nfs-common iw ldap-utils samba-common samba-common-bin steghide whois aircrack-ng openconnect gengetopt byacc flex cmake ophcrack gdb stunnel4 socat swftools hping3 tcpreplay tcpick firewalld scalpel foremost unrar rar secure-delete yersinia vmfs-tools net-tools gstreamer1.0-plugins-bad qemu-kvm qemu-utils binwalk gvfs-fuse xdg-user-dirs git-core autoconf postgresql pgadmin3 python-yara python-paramiko python-distorm3 python-beautifulsoup python-pygresql python-pil python-pycurl python-magic python-pyinotify python-configobj python-pexpect python-msgpack python-requests python-pefile python-ipy python-openssl python-pypcap python-dns python-dnspython python-crypto python-cryptography python-dev python-twisted python-scapy python-capstone python-setuptools python-urllib3 python3-pip python-pip ruby ruby-dev ruby-bundler php7.2-cli php7.2-curl python-notify python-impacket golang-go libappindicator1 libreadline-dev libcapstone3 libcapstone-dev zlib1g-dev libxml2-dev libxslt1-dev libyaml-dev libffi-dev libssh-dev libpq-dev libsqlite-dev libsqlite3-dev libpcap-dev libgmp3-dev libpcap-dev nodejs libpcre3-dev libidn11-dev libcurl4-openssl-dev libpq5 libreadline5 libappindicator1 libindicator7 libnss3 libxss1 libssl1.1 libncurses5-dev libncurses5 sni-qt sni-qt:i386 krdc
-}
-
 fedora_preinstall(){
     echo -e "\e[31m -> \e[0m \e[32m [*]Making sure we have everything before we start the rest of the setup. \e[0m"
     dnf update -y
@@ -78,7 +56,7 @@ create_directories(){
     mkdir $myDirectory/linux
     mkdir $myDirectory/postexploitation
     mkdir $myDirectory/social_engineering
-    
+
 }
 
 install_metasploit(){
@@ -148,9 +126,9 @@ install_tor(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Install Tor \e[0m"
     mkdir $myDirectory/network/torbrowser
     cd $myDirectory/network/torbrowser
-    wget -nc https://www.torproject.org/dist/torbrowser/8.0/tor-browser-linux64-8.0_en-US.tar.xz
-    tar -xf tor-browser-linux64-8.0_en-US.tar.xz
-    rm -rf tor-browser-linux64-8.0_en-US.tar.xz
+    wget -nc https://www.torproject.org/dist/torbrowser/9.0.10/tor-browser-linux64-9.0.10_en-US.tar.xz
+    tar -xf tor-browser-linux64-9.0.10_en-US.tar.xz
+    rm -rf tor-browser-linux64-9.0.10_en-US.tar.xz
     cd $myDirectory
 }
 
@@ -257,12 +235,12 @@ webapp_tools(){
     echo -e " \e[31m -> \e[0m \e[32m [*] Installing arachni and other webapp tools \e[0m"
     cd $myDirectory/webapps
     wget http://testssl.sh/testssl.sh
-    mkdir $myDirectory/webapps/arachni
-    cd $myDirectory/webapps/arachni
+    mkdir /opt/$mydirectory/webapps/arachni
+    cd /opt/$mydirectory/webapps/arachni
     wget -nc https://github.com/Arachni/arachni/releases/download/v1.5.1/arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
     tar -xf arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
     rm arachni-1.5.1-0.5.12-linux-x86_64.tar.gz
-    cd $myDirectory/webapps
+    cd /opt/$mydirectory/webapps
     git clone https://github.com/XiphosResearch/exploits.git
     git clone https://github.com/UltimateHackers/XSStrike
     git clone https://github.com/nahamsec/JSParser.git
@@ -300,14 +278,14 @@ webapp_tools(){
     cd dirb222
     ./configure
     make
-    cd $myDirectory/webapps
+    cd /opt/$mydirectory/webapps
     wget -nc "http://downloads.sourceforge.net/project/dirbuster/DirBuster%20%28jar%20%2B%20lists%29/1.0-RC1/DirBuster-1.0-RC1.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fdirbuster%2Ffiles%2FDirBuster%2520%2528jar%2520%252B%2520lists%2529%2F1.0-RC1%2F&ts=1443459199&use_mirror=iweb" -O DirBuster-1.0-RC1.tar.bz2
     bunzip2 DirBuster-1.0-RC1.tar.bz2
     tar -xf DirBuster-1.0-RC1.tar
     rm DirBuster-1.0-RC1.tar
-    cd $myDirectory/webapps/weevely3
+    cd /opt/$mydirectory/webapps/weevely3
     pip install -r requirements.txt
-    cd $myDirectory
+    cd /opt/$mydirectory
 }
 
 install_mitm(){
@@ -337,30 +315,20 @@ install_mitm(){
     git clone https://github.com/Hood3dRob1n/Reverser.git
     git clone https://github.com/SpiderLabs/ikeforce.git
     go get github.com/bettercap/bettercap
-    mv /home/$myname/go $myDirectory/network/bettercap
+    mv /home/$myname/go /opt/$mydirectory/network/bettercap
     git clone https://github.com/robertdavidgraham/masscan.git
-    cd $myDirectory/network/masscan/bin
+    cd /opt/$mydirectory/network/masscan/bin
     make
-    cd $myDirectory/network/MITMf
+    cd /opt/$mydirectory/network/MITMf
     pip install BeautifulSoup4
     pip install -r requirements.txt
     pip install mysql-python
-    cd $myDirectory/network/MITMf/libs/bdfactory/
+    cd /opt/$mydirectory/network/MITMf/libs/bdfactory/
     git clone https://github.com/secretsquirrel/the-backdoor-factory.git .
-    cd $myDirectory/network/CrackMapExec
+    cd /opt/$mydirectory/network/CrackMapExec
     pip install -r requirements.txt
     python setup.py install
-    cd $myDirectory/network
-    git clone https://github.com/P0cL4bs/WiFi-Pumpkin.git
-    pip install service_identity
-    pip install scapy_http
-    cd WiFi-Pumpkin
-    chmod +x installer.sh
-    ./installer.sh --install
-    cd $myDirectory/network
-    sudo pip install dpkt regex
-    git clone https://github.com/vikwin/pcapfex.git
-    cd $myDirectory
+    cd /opt/$mydirectory
 }
 
 install_social_engineering(){
@@ -510,16 +478,6 @@ create_symlink(){
     ln -s $myDirectory ./
 }
 
-run_updater(){
-    cd $myDirectory
-    echo 'I have not figured out how to automatically update Tor. You will need to maintain this yourself'
-    find . -type d -name .git -exec git --git-dir={} --work-tree=$PWD/{}/.. pull \;
-}
-
-wireshark_from_ppa(){
-    add-apt-repository ppa:wireshark-dev/stable
-    apt install wireshark
-}
 
 echo -e "
     \e[31m
@@ -527,14 +485,13 @@ echo -e "
 
 
                 Welcome to Pentools. This script installs penetration testing tools on regular
-                Linux Distributions aiming at Arch/Antegros, Ubuntu and Fedora, it might work
-                elsewhere but I dont know. There are select Windows tools in this script but
-                in terms of general use, this script will not work on Windows.
-                This Script is not something that is designed to replace a dedicated security
-                or pentesting distro but aiming to compliment the tools where other
-                restrictions may be placed on what can be deployed in certain situations,
-                This may also be helpful for people using Linux as a host and who dont want
-                to use a VM for CTF or HackTheBox.
+                Fedora, it might work elsewhere but I dont know.
+                There are select Windows tools in this script but in terms of general use, this
+                script will not work on Windows. This Script is not something that is designed
+                to replace a dedicated security or pentesting distro but aiming to compliment the
+                tools where other restrictions may be placed on what can be deployed in certain
+                situations. This may also be helpful for people using Linux as a host and who dont
+                want to use a VM for CTF or HackTheBox.
                 Where possible I recommedn preferring BlackArch, Kali or Parrot as they
                 are designed to be used for penetration testing and provide many advantages
                 over this script. Please proceed with caution, If this breaks your install I
@@ -559,37 +516,10 @@ echo -e " \e[34m INSTALLER STARTING NOW! \e[0m"
 
 sleep 5
 
-## Here we detect the OS so we know what functions/groups to use
-#detect and setup Antergos installs
-if cat /etc/os-release | grep 'Antergos'
-then
-    Antergos="y"
-fi
-
-
-#detect and setup Arch installs (I'm guessing, this is currently untested)
-if cat /etc/os-release | grep 'Arch'
-then
-    Arch="y"
-fi
-
-if cat /etc/lsb-release | grep 'Ubuntu'
-then
-    Ubuntu="y"
-fi
-
-if cat /etc/lsb-release | grep 'Fedora'
+## Fedora Install 32+
+if cat /etc/fedora-release | grep 3*
 then
     Fedora="y"
-fi
-
-# I have a different approach for Arch based install leveraging BlackArch. This approach makes the following questions useless, so we will check for an Arch base before bothering to ask
-
-if [[ "$Antergos" == "y" ]] || [[ "$Arch" == "y" ]]; then
-  setup_blackarch_repo
-  get_all_blackarch
-fi
-
 
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname
@@ -609,39 +539,6 @@ then
 fi
 
 #Execute tailored installs based on Distro detected
-
-if [[ "$Ubuntu" == "y" ]]
-then
-    ubuntu_preinstall
-    install_gems
-    create_directories
-    install_metasploit
-    misc_tools
-    wordlists
-    install_burp
-    misc_scripts
-    install_tor
-    php_reverse
-    privesc_tools
-    post-exploit
-    install_volatility
-    recon_tools
-    install_pwcrackers
-    webapp_tools
-    install_mitm
-    install_social_engineering
-    reverse_engineering
-    exploits
-    privacy_escalation
-    veil_framework
-    tool_cheatsheets
-    hash_identifiers
-    wireless_tools
-    wpscan
-    linux_tools_offline
-    fix_perms
-    create_symlink
-fi
 
 if [[ "$Fedora" == "y" ]]
 then
@@ -678,4 +575,4 @@ fi
 
 #find-exec is broken, disabling for now
 #echo -e " \e[31m -> \e[0m \e[32m [*] Setting up symlinks in your rc file(s) to make this easier to use \e[0m"
-#./find-exec.sh
+#./find-exec.py
