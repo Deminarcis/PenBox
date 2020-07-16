@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #check we are running as root
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run with sudo, as the user you are wanting to install it for"
+   echo "This script must be run with sudo, not su or root"
    exit 1
 fi
 # Bookmarking where the script was run from
