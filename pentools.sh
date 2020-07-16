@@ -519,11 +519,6 @@ echo -e " \e[34m INSTALLER STARTING NOW! \e[0m"
 sleep 5
 }
 
-## Fedora Install 32+
-if cat /etc/fedora-release | grep 3*
-then
-    fedora="y"
-
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname
 
@@ -541,37 +536,32 @@ then
     exit
 fi
 
-#Execute tailored installs based on Distro detected
-
-if [[ "$fedora" == "y" ]]
-then
-    intro
-    fedora_preinstall
-    install_gems
-    create_directories
-    install_metasploit
-    misc_tools
-    wordlists
-    install_burp
-    misc_scripts
-    install_tor
-    php_reverse
-    privesc_tools
-    post-exploit
-    install_volatility
-    recon_tools
-    install_pwcrackers
-    webapp_tools
-    install_mitm
-    install_social_engineering
-    reverse_engineering
-    exploits
-    privacy_escalation
-    veil_framework
-    tool_cheatsheets
-    hash_identifiers
-    wireless_tools
-    wpscan
-    linux_tools_offline
-    fix_perms
-fi
+intro
+fedora_preinstall
+install_gems
+create_directories
+install_metasploit
+misc_tools
+wordlists
+install_burp
+misc_scripts
+install_tor
+php_reverse
+privesc_tools
+post-exploit
+install_volatility
+recon_tools
+install_pwcrackers
+webapp_tools
+install_mitm
+install_social_engineering
+reverse_engineering
+exploits
+privacy_escalation
+veil_framework
+tool_cheatsheets
+hash_identifiers
+wireless_tools
+wpscan
+linux_tools_offline
+fix_perms
