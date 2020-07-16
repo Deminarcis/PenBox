@@ -5,8 +5,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 # Bookmarking where the script was run from
-runFolder="$PWD"
-myDirectory = "/opt/haxxx"
+export runFolder="$PWD"
+export myDirectory = "/opt/haxxx"
 
 #Install Groups (lists for OS at the bottom)
 
