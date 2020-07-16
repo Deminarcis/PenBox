@@ -494,7 +494,7 @@ echo -e "
                 tools where other restrictions may be placed on what can be deployed in certain
                 situations. This may also be helpful for people using Linux as a host and who dont
                 want to use a VM for CTF or HackTheBox.
-                Where possible I recommedn preferring BlackArch, Kali or Parrot as they
+                Where possible I recommend preferring BlackArch, Kali or Parrot as they
                 are designed to be used for penetration testing and provide many advantages
                 over this script. Please proceed with caution, If this breaks your install I
                 am not repsonisble and you get to keep the pieces. If per chance this does
