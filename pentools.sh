@@ -572,7 +572,6 @@ then
     wpscan
     linux_tools_offline
     fix_perms
-    create_symlink
 fi
 
 #find-exec is broken, disabling for now
