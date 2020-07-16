@@ -522,7 +522,7 @@ sleep 5
 ## Fedora Install 32+
 if cat /etc/fedora-release | grep 3*
 then
-    Fedora="y"
+    fedora="y"
 
 #get to know where we are doing this on the system and as whom
 read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname
@@ -543,7 +543,7 @@ fi
 
 #Execute tailored installs based on Distro detected
 
-if [[ "$Fedora" == "y" ]]
+if [[ "$fedora" == "y" ]]
 then
     intro
     fedora_preinstall
