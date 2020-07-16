@@ -14,13 +14,13 @@ fedora_preinstall(){
     echo -e "\e[31m -> \e[0m \e[32m [*]Making sure we have everything before we start the rest of the setup. \e[0m"
     dnf update -y
     dnf upgrade -y
-    dnf remove totem rhythmbox evolution -y
+    dnf remove totem rhythmbox -y
     dnf install -y kernel-headers kernel-devel gcc glibc-headers rpm-build
     dnf groupinstall -y "C Development Tools and Libraries"
     dnf groupinstall -y "Development Tools"
     dnf groupinstall -y security-lab
     dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-    dnf install -y nano scalpel foremost scapy srm yersinia hping3 tcpreplay tcpick socat ophcrack gdb stunnel cmake flex eog openconnect gengetopt steghide whois aircrack-ng gimp iw extundelete rpcbind rdesktop sshfs bzip2 gnome-tweak-tool libtool irssi medusa hydra hydra-frontend terminator curl proxychains perl-Image-ExifTool p7zip p7zip-plugins libpcap htop gnupg subversion git traceroute gparted pidgin pidgin-otr ghex ettercap libnetfilter_queue-devel openvpn dsniff tcpdump john nmap nbtscan wireshark java-1.8.0-openjdk vconfig reaver pyrit thc-ipv6 freerdp qemu-kvm binwalk virt-manager qemu-system-x86 gvfs-fuse autoconf postgresql pgadmin3 chromium-freeworld vlc php-cli
+    dnf install -y nano geary scalpel foremost scapy srm yersinia hping3 tcpreplay tcpick socat ophcrack gdb stunnel cmake flex eog openconnect gengetopt steghide whois aircrack-ng gimp iw extundelete rpcbind rdesktop sshfs bzip2 gnome-tweak-tool libtool irssi medusa hydra hydra-frontend terminator curl proxychains perl-Image-ExifTool p7zip p7zip-plugins libpcap htop gnupg subversion git traceroute gparted pidgin pidgin-otr ghex ettercap libnetfilter_queue-devel openvpn dsniff tcpdump john nmap nbtscan wireshark java-1.8.0-openjdk vconfig reaver pyrit thc-ipv6 freerdp qemu-kvm binwalk virt-manager qemu-system-x86 gvfs-fuse autoconf postgresql pgadmin3 chromium-freeworld vlc php-cli
     dnf install -y ruby ruby-devel rubygem-bundler rubygem-json rubygem-i18n ruby-irb rubygems rubygem-bigdecimal rubygem-rake rubygem-sqlite3 golang
     dnf install -y python python-pip python-setuptools python-libs python-magic python-netaddr python3-netaddr python-inotify python3-configobj python2-configobj python-msgpack python-requests python-pefile pylibpcap python-dns python-cryptography python-devel python-twisted capstone-python python-urllib3 python-pillow python-beautifulsoup python-beautifulsoup4 python2-selenium python3-selenium python-impacket
     dnf install -y readline readline-devel capstone libnl3-devel capstone-devel capstone-python3 openssl openssl-devel libxml2 libxml2-devel libxslt libxslt-devel libyaml libyaml-devel libffi libffi-devel libssh libssh-devel libpqxx libpqxx-devel libsqlite3x libsqlite3x-devel libpcap libpcap-devel pcre libcurl-devel libnfnetlink libnfnetlink-devel libnetfilter_queue-devel zlib-devel zlibrary xz-devel zlibrary-devel postgresql-devel libidn libidn-devel ncurses-libs ncurses ncurses-devel libappindicator libindicator m2crypto
