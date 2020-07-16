@@ -527,7 +527,7 @@ if [[ -d $myDirectory/ ]]; then
 fi
 
 clear
-echo -e "Your files will be installed to \e[35m $myDirectory \e[0m and will be usable by the user: \e[31m $myname \e[0m "
+echo -e "Your files will be installed to \e[35m $myDirectory \e[0m and will be usable by: \e[31m $myname \e[0m "
 
 
 if [[ "$update" == "y" ]]
