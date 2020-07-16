@@ -480,7 +480,7 @@ create_symlink(){
     ln -s $myDirectory ./
 }
 
-
+intro(){
 echo -e "
     \e[31m
         !-------------------------------------!  PENTOOLS  !----------------------------------------!
@@ -517,6 +517,7 @@ sleep 30
 echo -e " \e[34m INSTALLER STARTING NOW! \e[0m"
 
 sleep 5
+}
 
 ## Fedora Install 32+
 if cat /etc/fedora-release | grep 3*
@@ -544,6 +545,7 @@ fi
 
 if [[ "$Fedora" == "y" ]]
 then
+    intro
     fedora_preinstall
     install_gems
     create_directories
