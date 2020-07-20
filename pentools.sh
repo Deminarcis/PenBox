@@ -7,6 +7,7 @@ fi
 # Bookmarking where the script was run from
 runFolder="$PWD"
 myDirectory="/opt/haxxx"
+myname="$LOGNAME"
 
 #Install Groups (lists for OS at the bottom)
 
@@ -518,9 +519,6 @@ echo -e " \e[34m INSTALLER STARTING NOW! \e[0m"
 
 sleep 5
 }
-
-#get to know where we are doing this on the system and as whom
-read -p "[*] Please enter your username, this will help me fix permissions later ( run 'id' in another terminal if unsure ): " myname
 
 if [[ -d $myDirectory/ ]]; then
     read -p "This script has been run before and can run as an updater script. Do you want to run the updater? " update
