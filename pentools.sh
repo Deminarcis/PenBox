@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #check we are running as root
 if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run with sudo, not su or root"
+   echo "This script must be run with sudo"
    exit 1
 fi
 # Bookmarking where the script was run from
 runFolder="$PWD"
 myDirectory="/opt/haxxx"
 myname="$LOGNAME"
+myGroup="users"
 
 #Install Groups (lists for OS at the bottom)
 
@@ -377,6 +378,10 @@ exploits(){
     git clone https://github.com/FuzzySecurity/PowerShell-Suite.git
     git clone https://github.com/peewpw/Invoke-PSImage
     git clone https://github.com/madmantm/powershell
+    git clone https://github.com/Screetsec/TheFatRat.git
+    cd TheFatRat
+    chmox +x setup.sh && ./setup.sh
+    cd $myDirectory/exploits
     wget --header="Accept: text/html" --user-agent="MOZILLA" https://www.shellterproject.com/Downloads/Shellter/Latest/shellter.zip
     cd $myDirectory
 }
