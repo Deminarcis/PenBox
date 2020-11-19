@@ -1,17 +1,3 @@
-#!/usr/bin/env bash
-#check we are running as root
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run with sudo"
-   exit 1
-fi
-# Bookmarking where the script was run from
-runFolder="$PWD"
-myDirectory="/opt/haxxx"
-myname="$LOGNAME"
-myGroup="users"
-
-#Install Groups (lists for OS at the bottom)
-
 fedora_preinstall(){
     echo -e "\e[31m -> \e[0m \e[32m [*]Making sure we have everything before we start the rest of the setup. \e[0m"
     dnf update -y
@@ -41,27 +27,6 @@ install_gems(){
     gem install rake
 }
 
-create_directories(){
-    echo -e "\e[31m -> \e[0m \e[32m [*]create default core tools directory \e[0m"
-    mkdir $myDirectory
-    cd $myDirectory/
-    mkdir $myDirectory/cheatsheets
-    mkdir $myDirectory/network
-    mkdir $myDirectory/webapps
-    mkdir $myDirectory/exploits
-    mkdir $myDirectory/mobile
-    mkdir $myDirectory/wordlists
-    mkdir $myDirectory/escalation
-    mkdir $myDirectory/pwcracking
-    mkdir $myDirectory/reverse
-    mkdir $myDirectory/recon
-    mkdir $myDirectory/wireless
-    mkdir $myDirectory/windows
-    mkdir $myDirectory/linux
-    mkdir $myDirectory/postexploitation
-    mkdir $myDirectory/social_engineering
-
-}
 
 install_metasploit(){
     echo -e "\e[31m -> \e[0m \e[32m [*] Gathering the metasploit repository \e[0m"
@@ -482,96 +447,3 @@ linux_tools_offline(){
     wget -nc "http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run"
     wget -nc "https://out7.hex-rays.com/files/idafree70_linux.run"
 }
-
-fix_perms(){
-    echo -e " \e[31m -> \e[0m \e[32m [*] Correcting permissions \e[0m"
-    chown -R $myname:$myname $myDirectory
-}
-
-create_symlink(){
-    cd $HOME
-    ln -s $myDirectory ./
-}
-
-intro(){
-echo -e "
-    \e[31m
-        !-------------------------------------!  PENTOOLS  !----------------------------------------!
-
-
-                Welcome to Pentools. This script installs penetration testing tools on regular
-                Fedora, it might work elsewhere but I dont know.
-                There are select Windows tools in this script but in terms of general use, this
-                script will not work on Windows. This Script is not something that is designed
-                to replace a dedicated security or pentesting distro but aiming to compliment the
-                tools where other restrictions may be placed on what can be deployed in certain
-                situations. This may also be helpful for people using Linux as a host and who dont
-                want to use a VM for CTF or HackTheBox.
-                Where possible I recommend preferring BlackArch, Kali or Parrot as they
-                are designed to be used for penetration testing and provide many advantages
-                over this script. Please proceed with caution, If this breaks your install I
-                am not repsonisble and you get to keep the pieces. If per chance this does
-                break things, please open an issue on the github repo this script came from.
-
-
-                                \e[33m            HAPPY HACKING!    \e[0m  \e[31m
-
-
-                            The installation process will start in 30 seconds
-                            If you've changed your mind, press "Ctrl + C" now
-
-
-        !-------------------------------------!  PENTOOLS  !----------------------------------------!
-
-    \e[0m
-  "
-sleep 30
-
-echo -e " \e[34m INSTALLER STARTING NOW! \e[0m"
-
-sleep 5
-}
-
-if [[ -d $myDirectory/ ]]; then
-    read -p "This script has been run before and can run as an updater script. Do you want to run the updater? " update
-fi
-
-clear
-echo -e "Your files will be installed to \e[35m $myDirectory \e[0m and will be usable by: \e[31m $myname \e[0m "
-
-
-if [[ "$update" == "y" ]]
-then
-    run_updater
-    exit
-fi
-
-intro
-fedora_preinstall
-install_gems
-create_directories
-install_metasploit
-misc_tools
-wordlists
-install_burp
-misc_scripts
-install_tor
-php_reverse
-privesc_tools
-post-exploit
-install_volatility
-recon_tools
-install_pwcrackers
-webapp_tools
-install_mitm
-install_social_engineering
-reverse_engineering
-exploits
-privacy_escalation
-veil_framework
-tool_cheatsheets
-hash_identifiers
-wireless_tools
-wpscan
-linux_tools_offline
-fix_perms
