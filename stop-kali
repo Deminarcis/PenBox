@@ -1,0 +1,4 @@
+echo -e '### Stopping Kali ###'
+podman stop Kali
+echo -e '### Listing running containers ###'
+podman ps

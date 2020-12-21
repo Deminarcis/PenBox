@@ -1,0 +1,5 @@
+echo -e '### Starting Kali container ###'
+podman start Kali
+echo -e '### Attaching to session ###'
+echo -e 'To connect another window or connect manually you can run "podman attach Kali"'
+podman attach Kali
