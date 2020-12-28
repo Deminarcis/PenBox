@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo '### Deploying helper script'
 mkdir -p ~/.local/bin
 cp start-kali ~/.local/bin
