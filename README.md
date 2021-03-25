@@ -27,6 +27,7 @@ chmod +x deploy.sh
 
 Requirements
 ====================
-- ~An OS built around the same time as Ubuntu 18.04~ Fedora or OpenSUSE is recommended. This should work anywhere Podman installs
+- ~An OS built around the same time as Ubuntu 18.04~ You need an x86_64 CPU and to be able to run Podman.
 - disk space, Depends how much Kali you want. The image this script pulls is a base image and is just enough to boot.
+- systemD, we're using system files to control it as a service
 - An understanding of how to install software on the CLI as the Kali image has no tools when installed, you gotta do that yourself.
