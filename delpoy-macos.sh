@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-if [ uname == 'Darwin' || uname == 'darwin']; then
+if [ uname = 'Darwin' ]; then
     #install brew to try and deploy podman
     cd /Applications/Utilities
     xcode-select --install
@@ -16,6 +16,5 @@ if [ uname == 'Darwin' || uname == 'darwin']; then
     echo '### Pulling Pod from the internet and installing'
     podman run -dt --name Kali --net=host --privileged -e DISPLAY=:0 -it -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/podman-storage/Kali:/Shared kalilinux/kali-rolling /bin/bash
 else
-    echo -e "This script only runs on Mac OS/ \n please use delpoy.sh for everything else"
-    done
+    echo -e "This script only runs on Mac OS \n Please use delpoy.sh for everything else"
 fi
