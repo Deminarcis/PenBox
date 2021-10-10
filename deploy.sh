@@ -9,15 +9,21 @@ if  [ -f /usr/bin/pacman ]; then
 fi
 
 if [ -f /usr/bin/apt ]; then
+    echo "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
     sudo apt install -y podman
 fi
 
 if [ -f /usr/bin/zypper ]; then
+    echo "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
     sudo zypper in -y podman
 fi
 
 if [ -f /usr/bin/dnf ]; then
-    echo "Podman should already be present on Fedora or RHEL, continuing."
+    if [ -f /usr/bin/podman ]; then
+        echo "Podman is already configured in RHEL systems as needed, moving on."
+    else
+        sudo dnf install -y podman
+    fi
 fi
 echo '### Pulling Pod from the internet and installing'
 podman run -dt --name Kali --net=host --privileged -e DISPLAY=:0 -it -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/podman-storage/Kali:/Shared kalilinux/kali-rolling /bin/bash
