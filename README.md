@@ -8,19 +8,10 @@ I have a few goals to be implemented here.
 
 -   I want to re-use as much of the host stack as possible (re-use the kernel, networking stack, HDD/SSD without needing a binary only usable by a full hypervisor)
 -   I want this to be there when you need it, and have minimal impact when you dont
--   Containers are kinda tricky for the uninitiated, I aim to have a few helper scripts to make things easier
 -   Something controlable by an unpriveleged user
 
 This will likely be rough as I have no experience with podman until this.
 
----
-To install, clone the repo and use:
-```
-chmod +x deploy.sh
-
-./deploy.sh
-
-```
 ---
 
 *Any suggestions please don't hesitate to contact or open an issue*
@@ -31,3 +22,15 @@ Requirements
 - disk space, Depends how much Kali you want. The image this script pulls is a base image and is just enough to boot.
 - systemD, we're using system files to control it as a service
 - An understanding of how to install software on the CLI as the Kali image has no tools when installed, you gotta do that yourself.
+
+---
+
+### how to use
+
+- Run the install script for your platform (MacOS or Linux)
+- If on Linux run:
+    - `systemctl --user start container-kali`
+    - `podman attach --latest` (or use the ID assigned to the container)
+- If on MacOS start the container and run the attach command above
+
+To stop the container on Linux run `systemctl --user stop container-kali`
