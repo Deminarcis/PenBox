@@ -33,8 +33,8 @@ echo "### Checking the environment is suitable"
 if [ ! -d ~/.config/systemd/user/ ]; then
     mkdir -p ~/.config/systemd/user/
 fi
-if [ ! -d ~/.podman-storage/ ]; then
-    mkdir -p ~/.podman-storage/
+if [ ! -d ~/.podman-storage/Kali ]; then
+    mkdir -p ~/.podman-storage/Kali
 fi
 
 echo "### Pulling Pod from the internet and installing"
