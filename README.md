@@ -27,10 +27,12 @@ Requirements
 
 ### how to use
 
-- Run the install script for your platform (MacOS or Linux)
+- Run the install script for your platform (MacOS or Linux) e.g. `./install-linux.sh` for linux
 - If on Linux run:
     - `systemctl --user start container-kali`
-    - `podman attach --latest` (or use the ID assigned to the container)
+    - `podman attach --latest` (or use the name assigned to the container)
 - If on MacOS start the container and run the attach command above
 
 To stop the container on Linux run `systemctl --user stop container-kali`
+
+You can also run `podman start Kali` and `podman attach Kali`, then `podman stop Kali` when done.
