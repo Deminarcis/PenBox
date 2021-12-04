@@ -12,7 +12,10 @@ I have a few goals to be implemented here.
 
 ~~This will likely be rough as I have no experience with podman until this.~~
 
-The original implementation was rough and not great to use. There was a lot missing and I felt like I was providing a disservice. This tool has been rebased to leverage[the distrobox project](https://github.com/89luca89/distrobox)
+
+The original implementation was rough and not great to use. There was a lot missing and I felt like I was providing a disservice. This tool has been rebased to leverage [the distrobox project](https://github.com/89luca89/distrobox)
+
+
 ---
 
 *Any suggestions please don't hesitate to contact or open an issue*
@@ -30,7 +33,7 @@ Requirements
 
 - Run the install script e.g. `./install-linux.sh` from a terminal
 The installer will land you in the container if everything goes smoothly.
-You can return to the container by running `distrobox enter --name Kali`
+You can return to the container by running `distrobox-enter --name Kali`
 - Alternately you can run:
     - `systemctl --user start container-kali`
     - `podman attach --latest` (or use the name assigned to the container)
