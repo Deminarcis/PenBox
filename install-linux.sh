@@ -42,7 +42,7 @@ echo "### If you don't know which one to pick, pick the docker.io"
 echo "### The following permissions wil be set on the container
 
 Networking: Copy from host user
-Storage: A shared mountpoint will be used at ~/.podman-storage
+Storage: toolbox will be able to use your existing profile and home directory
 "
 podman run -dt --name Kali --net=host --privileged -e DISPLAY=:0 -it -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/.podman-storage/Kali:/Shared kalilinux/kali-rolling /bin/bash
 echo -e 'Setting up systemd files'
