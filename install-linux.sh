@@ -33,18 +33,22 @@ echo "### Checking the environment is suitable"
 if [ ! -d ~/.config/systemd/user/ ]; then
     mkdir -p ~/.config/systemd/user/
 fi
-if [ ! -d ~/.podman-storage/Kali ]; then
-    mkdir -p ~/.podman-storage/Kali
-fi
 
 echo "### Pulling Pod from the internet and installing"
-echo "### If you don't know which one to pick, pick the docker.io"
+echo "## you will need to provide the administrator password to install some tools that we need"
+echo "## your terminal will prompt you when we need those priveleges"
 echo "### The following permissions wil be set on the container
 
 Networking: Copy from host user
 Storage: toolbox will be able to use your existing profile and home directory
 "
-podman run -dt --name Kali --net=host --privileged -e DISPLAY=:0 -it -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/.podman-storage/Kali:/Shared kalilinux/kali-rolling /bin/bash
+curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+podman pull registry.fedoraproject.org/fedora-toolbox:35
+podman pull docker.io/kalilinux/kali-rolling:latest
+distrobox-create --image docker.io/kalilinux/kali-rolling:latest --name Kali
 echo -e 'Setting up systemd files'
 podman generate systemd --name Kali > ~/.config/systemd/user/container-kali.service
 systemctl --user daemon-reload
+
+echo "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Kali' #"
+distrobox-enter --name Kali

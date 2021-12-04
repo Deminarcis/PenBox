@@ -10,8 +10,8 @@ I have a few goals to be implemented here.
 -   I want this to be there when you need it, and have minimal impact when you dont
 -   Something controlable by an unpriveleged user
 
-This will likely be rough as I have no experience with podman until this.
-
+~~This will likely be rough as I have no experience with podman until this.~~
+The original implementation was rough and not great to use. There was a lot missing and I felt like I was providing a disservice. This tool has been rebased to leverage[the distrobox project](https://github.com/89luca89/distrobox)
 ---
 
 *Any suggestions please don't hesitate to contact or open an issue*
@@ -27,12 +27,13 @@ Requirements
 
 ### how to use
 
-- Run the install script for your platform (MacOS or Linux) e.g. `./install-linux.sh` for linux
-- If on Linux run:
+- Run the install script e.g. `./install-linux.sh` from a terminal
+The installer will land you in the container if everything goes smoothly.
+You can return to the container by running `distrobox enter --name Kali`
+- Alternately you can run:
     - `systemctl --user start container-kali`
     - `podman attach --latest` (or use the name assigned to the container)
-- If on MacOS start the container and run the attach command above
 
 To stop the container on Linux run `systemctl --user stop container-kali`
 
-You can also run `podman start Kali` and `podman attach Kali`, then `podman stop Kali` when done.
+You can also run `podman start Kali` and `podman attach Kali`, then `podman stop Kali` to control the container.
