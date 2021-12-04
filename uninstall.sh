@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 echo "### Stopping Kali container ###"
 systemctl --user stop container-kali.service 
+echo "### Container stopped ###"
 echo "### Removing container ###"
 podman rm Kali
 echo "### Removing image ###"
