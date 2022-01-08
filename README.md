@@ -29,15 +29,11 @@ Requirements
 
 ---
 
-### how to use
+### How to use
 
-- Run the install script e.g. `./install-linux.sh` from a terminal
-The installer will land you in the container if everything goes smoothly.
-You can return to the container by running `distrobox-enter --name Kali`
-- Alternately you can run:
-    - `systemctl --user start container-kali`
-    - `podman attach --latest` (or use the name assigned to the container)
+run the installer from a terminal using `./installer` the arguments for the script are below
 
-To stop the container on Linux run `systemctl --user stop container-kali`
-
-You can also run `podman start Kali` and `podman attach Kali`, then `podman stop Kali` to control the container.
+ "Usage:
+            -i : Runs script and sets up the environment
+            -u : Uninstalls this tool
+            -h : Display this message"
