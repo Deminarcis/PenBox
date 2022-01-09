@@ -71,6 +71,9 @@ uninstall() {
     echo "### Removing image ###"
     podman rmi docker.io/kalilinux/kali-rolling:latest
     curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/uninstall | sudo sh
+    if [[ -f /usr/local/bin/distrobox ]]; then
+        sudo rm -v /usr/local/bin/distrobox*
+    fi
     echo "Kali-pod removed from your system"
 }
 
