@@ -33,7 +33,9 @@ Requirements
 
 run the installer from a terminal using `./installer` the arguments for the script are below
 
- "Usage:
+ ```
+Usage:
             -i : Runs script and sets up the environment
             -u : Uninstalls this tool
-            -h : Display this message"
+            -h : Display this message
+```
