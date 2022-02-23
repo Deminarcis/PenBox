@@ -28,6 +28,10 @@ setup() {
         else
             sudo dnf install -y podman
         fi
+        if [ -f /usr/bin/distrobox ]; then
+            echo "Distrobox is already installed ... skipping"
+        else
+            sudo dnf install distrobox
     fi
 
     echo "### Checking the environment is suitable"
@@ -71,6 +75,12 @@ uninstall() {
     echo "### Removing image ###"
     podman rmi docker.io/kalilinux/kali-rolling:latest
     curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/uninstall | sudo sh
+    echo "### Removing Distrobox"
+    if [ -f /usr/bin/dnf ]; then
+        if [ -f /usr/bin/distrobox ]; then
+            sudo dnf remove distrobox
+        fi
+    fi
     if [[ -f /usr/local/bin/distrobox ]]; then
         sudo rm -v /usr/local/bin/distrobox*
     fi
