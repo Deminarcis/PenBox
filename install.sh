@@ -32,7 +32,8 @@ setup () {
     if [ ! -d ~/.config/systemd/user/ ]; then
         mkdir -p ~/.config/systemd/user/
     fi
-    echo -e "### Pre-set up complete, ready to install" }
+    echo -e "### Pre-set up complete, ready to install"; 
+    }
 
 install () {
     echo -e "### Pulling Pod from the internet and installing"
@@ -82,11 +83,11 @@ uninstall () {
 
 while getopts "iuh" opt; do
     case "${opt}" in
-        i | install ) #Install the program and dependencies
+        i) #Install the program and dependencies
             setup;
             install; 
             ;;
-        u | uninstall ) # Run uninstaller
+        u) # Run uninstaller
             uninstall; 
             ;;
         h | *) #Print help message explaining options
