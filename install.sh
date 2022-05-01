@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 setup () { 
     #Arch/Manjaro
     if  [ -f /usr/bin/pacman ]; then
@@ -23,16 +22,10 @@ setup () {
     fi
 
     #Fedora/RHEL
-    if [ -f /usr/bin/dnf ]; then
-        if [ -f /usr/bin/podman ]; then
-            echo -e "Podman is already configured in RHEL systems as needed, moving on."
-        else
-            sudo dnf install -y podman
-        fi
-        if [ -f /usr/bin/distrobox ]; then
-            echo -e "Distrobox is already installed ... skipping"
-        else
-            sudo dnf install distrobox
+    if [ -f /usr/bin/distrobox ]; then
+        echo -e "Distrobox is already installed ... skipping"
+    else
+        sudo dnf install distrobox toolbox podman
     fi
 
     echo -e "### Checking the environment is suitable"
@@ -90,17 +83,17 @@ uninstall () {
 while getopts "iuh" opt; do
     case "${opt}" in
         i | install ) #Install the program and dependencies
-            setup
-            install 
+            setup;
+            install; 
             ;;
         u | uninstall ) # Run uninstaller
-            uninstall 
+            uninstall; 
             ;;
         h | *) #Print help message explaining options
             echo -e -e "Usage:
             -i : Runs script and sets up the environment
             -u : Uninstalls this tool
-            -h : Display this message"
+            -h : Display this message";
             exit 1 ;;
     esac
 done
