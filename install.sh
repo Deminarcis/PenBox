@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function setup () { 
+setup () { 
     #Arch/Manjaro
     if  [ -f /usr/bin/pacman ]; then
         sudo pacman -S podman --needed
@@ -41,7 +41,7 @@ function setup () {
     fi
     echo -e "### Pre-set up complete, ready to install" }
 
-function install () {
+install () {
     echo -e "### Pulling Pod from the internet and installing"
     echo -e "## you will need to provide the administrator password to install some tools that we need"
     echo -e "## your terminal will prompt you when we need those priveleges"
@@ -65,7 +65,7 @@ function install () {
     distrobox-enter --name Kali
 }
 
-function uninstall () {
+uninstall () {
     echo -e "### Stopping Kali container ###"
     podman stop Kali
     systemctl --user stop container-kali.service 
