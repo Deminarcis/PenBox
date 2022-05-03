@@ -2,7 +2,7 @@
 setup () { 
     #Arch/Manjaro
     if  [ -f /usr/bin/pacman ]; then
-        sudo pacman -S podman --needed
+        sudo pacman -S podman distrobox --needed
         sudo touch /etc/subuid
         sudo touch /etc/subgid
         sudo usermod --add-subuids 165536-231072 --add-subgids 165536-231072 '$USER'
@@ -12,13 +12,13 @@ setup () {
     #Debian/Ubuntu
     if [ -f /usr/bin/apt ]; then
         echo -e "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
-        sudo apt install -y podman
+        sudo apt install -y podman distrobox
     fi
 
     #OpenSUSE
     if [ -f /usr/bin/zypper ]; then
         echo -e "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
-        sudo zypper in -y podman
+        sudo zypper in -y podman distrobox
     fi
 
     #Fedora/RHEL
@@ -50,6 +50,9 @@ install () {
         curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
     fi
     podman pull registry.fedoraproject.org/fedora-toolbox:35
+}
+
+kali () {
     podman pull docker.io/kalilinux/kali-rolling:latest
     distrobox-create --image docker.io/kalilinux/kali-rolling:latest --name Kali
     echo -e 'Setting up systemd files'
@@ -59,15 +62,29 @@ install () {
     distrobox-enter --name Kali
 }
 
+parrot () {
+    podman pull docker.io/parrotsec/security:latest
+    distrobox-create --image docker.io/parrotsec/security:latest --name Parrot
+    echo -e 'Setting up systemd files'
+    podman generate systemd --name Parrot > ~/.config/systemd/user/container-parrot.service
+    systemctl --user daemon-reload
+    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Kali' #"
+    distrobox-enter --name Parrot
+}
+
 uninstall () {
-    echo -e "### Stopping Kali container ###"
+    echo -e "### Stopping containers ###"
     podman stop Kali
-    systemctl --user stop container-kali.service 
+    poman stop Parrot
+    systemctl --user stop container-kali.service
+    systemctl --user stop container-parrot.service 
     echo -e "### Container stopped ###"
     echo -e "### Removing container ###"
     podman rm Kali
+    podman rm Parrot
     echo -e "### Removing image ###"
     podman rmi docker.io/kalilinux/kali-rolling:latest
+    podman rmi docker.io/parrotsec/security:latest
     curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/uninstall | sudo sh
     echo -e "### Removing Distrobox"
     if [ -f /usr/bin/dnf ]; then
@@ -81,18 +98,37 @@ uninstall () {
     echo -e "Kali-pod removed from your system"
 }
 
-while getopts "iuh" opt; do
+while getopts "sikpuh" opt; do
     case "${opt}" in
-        i) #Install the program and dependencies
+        s) #only runs setup routines
             setup;
             install; 
+            ;;
+        i) #Install the program and dependencies
+            setup;
+            install;
+            kali;
+            parrot; 
+            ;;
+        k) # Installs only Kali container
+            setup;
+            install;
+            kali;
+            ;;
+        p) # Installs only Parrot container
+            setup;
+            install;
+            parrot;
             ;;
         u) # Run uninstaller
             uninstall; 
             ;;
         h | *) #Print help message explaining options
             echo -e -e "Usage:
-            -i : Runs script and sets up the environment
+            -s : Prepares the environment
+            -i : Installs all options (options -s -k -p)
+            -k : Installs only Kali
+            -p : Installs only parrot
             -u : Uninstalls this tool
             -h : Display this message";
             exit 1 ;;
