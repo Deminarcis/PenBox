@@ -68,7 +68,7 @@ parrot () {
     echo -e 'Setting up systemd files'
     podman generate systemd --name Parrot > ~/.config/systemd/user/container-parrot.service
     systemctl --user daemon-reload
-    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Kali' #"
+    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Parrot' #"
     distrobox-enter --name Parrot
 }
 
