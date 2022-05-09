@@ -108,16 +108,11 @@ while getopts "sikpuh" opt; do
             setup;
             install;
             kali;
-            parrot;
             ;;
-        k) # Installs only Kali container
-            setup;
-            install;
+        k) # Installs Kali container
             kali;
             ;;
-        p) # Installs only Parrot container
-            setup;
-            install;
+        p) # Installs Parrot container
             parrot;
             ;;
         u) # Run uninstaller
