@@ -12,7 +12,7 @@ setup () {
     #Debian/Ubuntu
     if [ -f /usr/bin/apt ]; then
         echo -e "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
-        sudo apt install -y podman
+        sudo apt install -y podman podman-toolbox
     fi
 
     #OpenSUSE
