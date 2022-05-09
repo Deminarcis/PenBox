@@ -22,20 +22,23 @@ The original implementation was rough and not great to use. There was a lot miss
 
 Requirements
 ====================
-- ~An OS built around the same time as Ubuntu 18.04~ You need an x86_64 CPU and to be able to run Podman.
-- disk space, Depends how much Kali you want. The image this script pulls is a base image and is just enough to boot.
-- systemD, we're using system files to control it as a service
+- ~An OS built around the same time as Ubuntu 18.04~ You need system able to run Podman.
+- disk space, a little or a lot. Depends how much you want. The Kali image provided is a minimal install but other options may be more full featured
+- systemD, we're using system files to control containers as a service
 - An understanding of how to install software on the CLI as the Kali image has no tools when installed, you gotta do that yourself.
 
 ---
 
 ### How to use
 
-run the installer from a terminal using `./installer` the arguments for the script are below
+run the installer from a terminal using `./install.sh` the arguments for the script are below
 
  ```
 Usage:
-            -i : Runs script and sets up the environment
+            -s : Prepares the environment
+            -i : Installs all options (options -s -k -p)
+            -k : Installs only Kali
+            -p : Installs only parrot
             -u : Uninstalls this tool
             -h : Display this message
 ```
