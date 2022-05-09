@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-setup () { 
+setup () {
     #Arch/Manjaro
     if  [ -f /usr/bin/pacman ]; then
         sudo pacman -S podman distrobox --needed
@@ -12,7 +12,7 @@ setup () {
     #Debian/Ubuntu
     if [ -f /usr/bin/apt ]; then
         echo -e "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
-        sudo apt install -y podman distrobox
+        sudo apt install -y podman
     fi
 
     #OpenSUSE
@@ -22,7 +22,7 @@ setup () {
     fi
 
     #Fedora/RHEL
-    if [ -f /usr/bin/distrobox ]; then
+    if [ -f /usr/bin/dnf ]; then
         echo -e "Distrobox is already installed ... skipping"
     else
         sudo dnf install distrobox toolbox podman
@@ -32,7 +32,7 @@ setup () {
     if [ ! -d ~/.config/systemd/user/ ]; then
         mkdir -p ~/.config/systemd/user/
     fi
-    echo -e "### Pre-set up complete, ready to install"; 
+    echo -e "### Pre-set up complete, ready to install";
     }
 
 install () {
@@ -77,7 +77,7 @@ uninstall () {
     podman stop Kali
     poman stop Parrot
     systemctl --user stop container-kali.service
-    systemctl --user stop container-parrot.service 
+    systemctl --user stop container-parrot.service
     echo -e "### Container stopped ###"
     echo -e "### Removing container ###"
     podman rm Kali
@@ -102,13 +102,13 @@ while getopts "sikpuh" opt; do
     case "${opt}" in
         s) #only runs setup routines
             setup;
-            install; 
+            install;
             ;;
         i) #Install the program and dependencies
             setup;
             install;
             kali;
-            parrot; 
+            parrot;
             ;;
         k) # Installs only Kali container
             setup;
@@ -121,7 +121,7 @@ while getopts "sikpuh" opt; do
             parrot;
             ;;
         u) # Run uninstaller
-            uninstall; 
+            uninstall;
             ;;
         h | *) #Print help message explaining options
             echo -e -e "Usage:
