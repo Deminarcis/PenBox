@@ -98,7 +98,7 @@ uninstall () {
     echo -e "Kali-pod removed from your system"
 }
 
-while getopts "sikpuh" opt; do
+while getopts "sikbuh" opt; do
     case "${opt}" in
         s) #only runs setup routines
             setup;
