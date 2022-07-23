@@ -62,14 +62,14 @@ kali () {
     distrobox-enter --name Kali
 }
 
-parrot () {
-    podman pull docker.io/parrotsec/security:latest
-    distrobox-create --image docker.io/parrotsec/security:latest --name Parrot
+blackarch () {
+    podman pull blackarchlinux/blackarch
+    distrobox-create --image docker.io/parrotsec/security:latest --name BlackArch
     echo -e 'Setting up systemd files'
-    podman generate systemd --name Parrot > ~/.config/systemd/user/container-parrot.service
+    podman generate systemd --name Blackarch > ~/.config/systemd/user/container-blackarch.service
     systemctl --user daemon-reload
     echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Parrot' #"
-    distrobox-enter --name Parrot
+    distrobox-enter --name Blackarch
 }
 
 uninstall () {
@@ -112,8 +112,8 @@ while getopts "sikpuh" opt; do
         k) # Installs Kali container
             kali;
             ;;
-        p) # Installs Parrot container
-            parrot;
+        b) # Installs blackarch container
+            blackarch;
             ;;
         u) # Run uninstaller
             uninstall;
@@ -121,9 +121,9 @@ while getopts "sikpuh" opt; do
         h | *) #Print help message explaining options
             echo -e -e "Usage:
             -s : Prepares the environment
-            -i : Installs all options (options -s -k -p)
+            -i : Installs all options (options -s -k -b)
             -k : Installs only Kali
-            -p : Installs only parrot
+            -b : Installs only blackarch
             -u : Uninstalls this tool
             -h : Display this message";
             exit 1 ;;
