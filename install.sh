@@ -68,7 +68,7 @@ blackarch () {
     echo -e 'Setting up systemd files'
     podman generate systemd --name Blackarch > ~/.config/systemd/user/container-blackarch.service
     systemctl --user daemon-reload
-    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Parrot' #"
+    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Blackarch' #"
     distrobox-enter --name Blackarch
 }
 
@@ -84,7 +84,7 @@ uninstall () {
     podman rm Parrot
     echo -e "### Removing image ###"
     podman rmi docker.io/kalilinux/kali-rolling:latest
-    podman rmi docker.io/parrotsec/security:latest
+    podman rmi docker.io/blackarchlinux/blackarch:latest
     curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/uninstall | sudo sh
     echo -e "### Removing Distrobox"
     if [ -f /usr/bin/dnf ]; then
