@@ -63,8 +63,8 @@ kali () {
 }
 
 blackarch () {
-    podman pull blackarchlinux/blackarch
-    distrobox-create --image docker.io/parrotsec/security:latest --name BlackArch
+    podman pull blackarchlinux/blackarch:latest
+    distrobox-create --image docker.io/blackarchlinux/blackarch:latest --name BlackArch
     echo -e 'Setting up systemd files'
     podman generate systemd --name Blackarch > ~/.config/systemd/user/container-blackarch.service
     systemctl --user daemon-reload
@@ -77,7 +77,7 @@ uninstall () {
     podman stop Kali
     poman stop Parrot
     systemctl --user stop container-kali.service
-    systemctl --user stop container-parrot.service
+    systemctl --user stop container-blackarch.service
     echo -e "### Container stopped ###"
     echo -e "### Removing container ###"
     podman rm Kali
