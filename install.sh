@@ -120,7 +120,7 @@ while getopts "sikbuh" opt; do
             ;;
         h | *) #Print help message explaining options
             echo -e -e "Usage:
-            -s : Prepares the environment
+            -s : Prepares the environment (run this first if you want a specific container)
             -i : Installs all options (options -s -k -b)
             -k : Installs only Kali
             -b : Installs only blackarch
