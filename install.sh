@@ -108,6 +108,7 @@ while getopts "sikbuh" opt; do
             setup;
             install;
             kali;
+            blackarch;
             ;;
         k) # Installs Kali container
             kali;
