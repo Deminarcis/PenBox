@@ -69,7 +69,7 @@ blackarch () {
     podman generate systemd --name Blackarch > ~/.config/systemd/user/container-blackarch.service
     systemctl --user daemon-reload
     echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Blackarch' #"
-    distrobox-enter --name Blackarch
+    distrobox-enter --name BlackArch
 }
 
 uninstall () {
