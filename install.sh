@@ -73,7 +73,7 @@ blackarch () {
 uninstall () {
     echo -e "### Stopping containers ###"
     podman stop Kali
-    poman stop Parrot
+    poman stop BlackArch
     systemctl --user stop container-kali.service
     systemctl --user stop container-blackarch.service
     echo -e "### Container stopped ###"
