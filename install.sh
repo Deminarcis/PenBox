@@ -59,7 +59,6 @@ kali () {
     podman generate systemd --name Kali > ~/.config/systemd/user/container-kali.service
     systemctl --user daemon-reload
     echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Kali' #"
-    distrobox-enter --name Kali
 }
 
 blackarch () {
@@ -69,7 +68,6 @@ blackarch () {
     podman generate systemd --name Blackarch > ~/.config/systemd/user/container-blackarch.service
     systemctl --user daemon-reload
     echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Blackarch' #"
-    distrobox-enter --name BlackArch
 }
 
 uninstall () {
@@ -122,7 +120,7 @@ while getopts "sikbuh" opt; do
         h | *) #Print help message explaining options
             echo -e -e "Usage:
             -s : Prepares the environment (run this first if you want a specific container)
-            -i : Installs all options (options -s -k -b)
+            -i : Installs all options (same as -s -k -b)
             -k : Installs only Kali
             -b : Installs only blackarch
             -u : Uninstalls this tool
