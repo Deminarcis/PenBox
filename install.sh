@@ -6,96 +6,97 @@ setup () {
         sudo touch /etc/subuid
         sudo touch /etc/subgid
         sudo usermod --add-subuids 165536-231072 --add-subgids 165536-231072 '$USER'
-        echo -e 'see "https://wiki.archlinux.org/index.php/Cgroups#Switching_to_cgroups_v2" for help setting up cgroups2'
+        echo -e '[!] see "https://wiki.archlinux.org/index.php/Cgroups#Switching_to_cgroups_v2" for help setting up cgroups2'
     fi
 
     #Debian/Ubuntu
     if [ -f /usr/bin/apt ]; then
-        echo -e "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
+        echo -e "[!] Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
         sudo apt install -y podman podman-toolbox
     fi
 
     #OpenSUSE
     if [ -f /usr/bin/zypper ]; then
-        echo -e "Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
+        echo -e "[!] Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
         sudo zypper in -y podman distrobox
     fi
 
     #Fedora/RHEL
     if [ -f /usr/bin/dnf ]; then
-        echo -e "Distrobox is already installed ... skipping"
+        echo -e "[+] Distrobox is already installed ... skipping"
     else
-        sudo dnf install distrobox toolbox podman
+        sudo dnf install distrobox
     fi
 
-    echo -e "### Checking the environment is suitable"
+    echo -e "[+] Checking the environment is suitable"
     if [ ! -d ~/.config/systemd/user/ ]; then
         mkdir -p ~/.config/systemd/user/
     fi
-    echo -e "### Pre-set up complete, ready to install";
+    echo -e "[+] Pre-set up complete, ready to install";
     }
 
 install () {
-    echo -e "### Pulling Pod from the internet and installing"
-    echo -e "## you will need to provide the administrator password to install some tools that we need"
-    echo -e "## your terminal will prompt you when we need those priveleges"
-    echo -e "### The following permissions wil be set on the container
+    echo -e "[+] Pulling Pod from the internet and installing"
+    echo -e "[+] you will need to provide the administrator password to install some tools that we need"
+    echo -e "[+] your terminal will prompt you when we need those priveleges"
+    echo -e "[+] The following permissions wil be set on the container
 
     Networking: Copy from host user
     Storage: Distrobox will be able to use your existing profile and home directory
     "
     if [[ "$(command -v distrobox)" ]]; then
-        echo -e "Distrobox is installed, moving on"
+        echo -e "[+] Distrobox is installed, moving on"
     else
         curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
     fi
-    podman pull registry.fedoraproject.org/fedora-toolbox:36
+    podman pull registry.fedoraproject.org/fedora-toolbox:37
+    mkdir -p '/home/$USER/containers/'
 }
 
 kali () {
     podman pull docker.io/kalilinux/kali-rolling:latest
-    distrobox-create --image docker.io/kalilinux/kali-rolling:latest --name Kali
-    echo -e 'Setting up systemd files'
+    distrobox-create --image docker.io/kalilinux/kali-rolling:latest --name kali -I -H '/home/$USER/containers/kali'
+    echo -e '[+] Setting up systemd files'
     podman generate systemd --name Kali > ~/.config/systemd/user/container-kali.service
     systemctl --user daemon-reload
-    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Kali' #"
-    distrobox-enter --name Kali
+    echo -e "[+] Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name kali' "
+    distrobox-enter --name kali
 }
 
 blackarch () {
     podman pull blackarchlinux/blackarch:latest
-    distrobox-create --image docker.io/blackarchlinux/blackarch:latest --name BlackArch
-    echo -e 'Setting up systemd files'
+    distrobox-create --image docker.io/blackarchlinux/blackarch:latest --name blackarch -I -H '/home/$USER/containers/blackarch'
+    echo -e '[+] Setting up systemd files'
     podman generate systemd --name Blackarch > ~/.config/systemd/user/container-blackarch.service
     systemctl --user daemon-reload
-    echo -e "# Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name Blackarch' #"
-    distrobox-enter --name BlackArch
+    echo -e "[+] Your pod is ready to go! Entering pod now. when you need this in the future run 'distrobox-enter --name blackarch' "
+    distrobox-enter --name blackbrch
 }
 
 uninstall () {
-    echo -e "### Stopping containers ###"
+    echo -e "[!] Stopping containers "
     podman stop Kali
     poman stop Parrot
     systemctl --user stop container-kali.service
     systemctl --user stop container-blackarch.service
-    echo -e "### Container stopped ###"
-    echo -e "### Removing container ###"
+    echo -e "[!] Container stopped "
+    echo -e "[!] Removing container "
     podman rm Kali
     podman rm Parrot
-    echo -e "### Removing image ###"
+    echo -e "[!] Removing image"
     podman rmi docker.io/kalilinux/kali-rolling:latest
     podman rmi docker.io/blackarchlinux/blackarch:latest
     curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/uninstall | sudo sh
-    echo -e "### Removing Distrobox"
+    echo -e "[!] Removing Distrobox"
     if [ -f /usr/bin/dnf ]; then
         if [ -f /usr/bin/distrobox ]; then
-            sudo dnf remove distrobox
+            sudo dnf remove -y distrobox
         fi
     fi
     if [[ -f /usr/local/bin/distrobox ]]; then
         sudo rm -v /usr/local/bin/distrobox*
     fi
-    echo -e "Kali-pod removed from your system"
+    echo -e "[!] Kali-pod removed from your system"
 }
 
 while getopts "sikbuh" opt; do
@@ -124,7 +125,7 @@ while getopts "sikbuh" opt; do
             -s : Prepares the environment (run this first if you want a specific container)
             -i : Installs all options (options -s -k -b)
             -k : Installs only Kali
-            -b : Installs only blackarch
+            -b : Installs only BlackArch
             -u : Uninstalls this tool
             -h : Display this message";
             exit 1 ;;

@@ -2,6 +2,7 @@
 
 Previously this repo had Pentools, a script that would install a bunch of tools. This was a large list, time consuming and inefficient to maintain and use as everything was effectively built from source. In short, it's wasteful.
 The script is still in this repo but now defunct and called "tools.txt".
+I have settled on a new name PenBox.... we're still doing what pentools did, just putting it in it's own box
 
 Instead of emulating and pretending to have the same stuff as Kali. Why not just use Kali? Or Blackarch? or Parrot (Parrot didnt go so well.....)
 
