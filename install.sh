@@ -7,12 +7,13 @@ setup () {
         sudo touch /etc/subgid
         sudo usermod --add-subuids 165536-231072 --add-subgids 165536-231072 '$USER'
         echo -e '[!] see "https://wiki.archlinux.org/index.php/Cgroups#Switching_to_cgroups_v2" for help setting up cgroups2'
+
     fi
 
     #Debian/Ubuntu
     if [ -f /usr/bin/apt ]; then
         echo -e "[!] Installing podman from repos. Further setup may be needed, please check your distro's documentation for podman or Cgroups v2"
-        sudo apt install -y podman podman-toolbox
+        sudo apt install -y podman podman-toolbox distrobox
     fi
 
     #OpenSUSE
@@ -23,9 +24,7 @@ setup () {
 
     #Fedora/RHEL
     if [ -f /usr/bin/dnf ]; then
-        echo -e "[+] Distrobox is already installed ... skipping"
-    else
-        sudo dnf install distrobox
+        sudo dnf install podman distrobox
     fi
 
     echo -e "[+] Checking the environment is suitable"
