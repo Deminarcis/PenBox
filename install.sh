@@ -48,7 +48,7 @@ install () {
     else
         curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
     fi
-    podman pull registry.fedoraproject.org/fedora-toolbox:37
+    podman pull registry.fedoraproject.org/fedora-toolbox:38
     mkdir -p '/home/$USER/containers/'
 }
 
